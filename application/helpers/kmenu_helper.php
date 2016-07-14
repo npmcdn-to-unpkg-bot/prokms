@@ -6,7 +6,7 @@ function kmenu($base)
     $ci =& get_instance();
     
     $role = $ci->session->userdata('id_role');
-//        start creating string
+
     $str = '<ul class="mainnav subnavbar-open-right">
                 <li class=""> <a href="'.$base.'home/"><i class="icon-home"></i><span>home</span> </a> </li>
                 <li class="dropdown">
@@ -32,7 +32,9 @@ function kmenu($base)
                     <i class="icon-wrench"></i><span>SETTING</span> <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="'.$base.'perkembangan/input">USERS</a></li>
+                        <li><a href="'.$base.'setting/ortu">Data Orang Tua</a></li>
+                        <li><a href="'.$base.'setting/ortu">Data Dokter</a></li>
+                        <li><a href="'.$base.'setting/ortu">Data Petugas Posyandu</a></li>
                     </ul>
                 </li>
             </ul>
