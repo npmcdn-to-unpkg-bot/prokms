@@ -43,6 +43,11 @@ class Setting extends CI_Controller {
 	public function ortu_new()
 	{
             
+            if ($this->input->post())
+            {
+//                database operation
+                
+            }
             $view['content'] = $this->load->view('setting/ortu_new',NULL,TRUE);
             $this->load->view('index',$view);
 	}
