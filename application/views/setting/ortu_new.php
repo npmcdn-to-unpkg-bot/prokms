@@ -6,6 +6,10 @@
                     <h3>Tambah Orang Tua</h3>
             </div>
             <div class="widget-content">
+                <div class="row">
+                    <?= validation_errors('<div class="span8 alert alert-error">', '</div>');  ?>
+                </div>
+
                 <form id="add_auditor" class="form-horizontal" action="" method="POST" >
                         <fieldset>
                            <div class="control-group">											
@@ -23,13 +27,13 @@
                                     </div> <!-- /controls -->				
                             </div>
                             <div class="control-group">											
-                                    <label class="control-label" for="photo">Alamat</label>
+                                    <label class="control-label" for="alamat">Alamat</label>
                                     <div class="controls" id="photo">
                                         <textarea id="alamat" name="alamat" rows="5" cols="50" ></textarea>
                                     </div> <!-- /controls -->				
                             </div> <!-- /control-group -->
                             <div class="control-group">											
-                                    <label class="control-label" for="email">Phone</label>
+                                    <label class="control-label" for="email">Telephone/HP</label>
                                     <div class="controls">
                                         <input type="text" id="phone" name="phone" value="">
                                     </div> <!-- /controls -->				
@@ -54,8 +58,8 @@
                                     </div> <!-- /controls -->				
                             </div>
                         <div class="form-actions">
-                                <button type="submit" class="btn btn-primary">Save</button> 
-                                <button class="btn">Cancel</button>
+                                <button type="submit" value="Save" class="btn btn-primary">Save</button> 
+                                <a href="<?= base_url()?>setting/ortu" class="btn">Cancel</a>
                         </div>
                         </fieldset>
                 </form>

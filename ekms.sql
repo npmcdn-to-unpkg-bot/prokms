@@ -136,14 +136,14 @@ DROP TABLE IF EXISTS `orang_tua`;
 CREATE TABLE `orang_tua` (
   `id_ortu` int(4) NOT NULL AUTO_INCREMENT,
   `nama_ortu` varchar(50) NOT NULL,
-  `flag_ibu` tinyint(1) NOT NULL,
+  `jkel` varchar(6) NOT NULL,
   `id_user` int(4) NOT NULL,
   `alamat` varchar(100) NOT NULL,
   `no_hp` varchar(15) NOT NULL,
   `email` varchar(50) NOT NULL,
   `last_update` datetime NOT NULL,
   PRIMARY KEY (`id_ortu`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152,6 +152,7 @@ CREATE TABLE `orang_tua` (
 
 LOCK TABLES `orang_tua` WRITE;
 /*!40000 ALTER TABLE `orang_tua` DISABLE KEYS */;
+INSERT INTO `orang_tua` VALUES (1,'','pria',3,'Jl. SIni','0821','s@s.com','0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `orang_tua` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -219,14 +220,14 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id_user` int(4) NOT NULL AUTO_INCREMENT,
-  `username` varchar(20) NOT NULL,
-  `credential` varchar(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `credential` varchar(200) NOT NULL,
   `id_role` int(4) NOT NULL,
   `tgl_reg` datetime NOT NULL,
   `last_update` datetime NOT NULL,
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `username_ui` (`username`) USING HASH
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -235,7 +236,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','7694f4a66316e53c8cdd9d9954bd611d',1,'2016-07-08 23:19:25','0000-00-00 00:00:00');
+INSERT INTO `users` VALUES (1,'admin','7694f4a66316e53c8cdd9d9954bd611d',1,'2016-07-08 23:19:25','0000-00-00 00:00:00'),(3,'s@s.com','7694f4a66316e53c8cdd9d9954bd611d',2,'2016-07-17 14:23:31','0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -248,4 +249,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-15 10:51:46
+-- Dump completed on 2016-07-17 22:03:18

@@ -22,10 +22,29 @@
                           <th>Phone</th>
                           <th>E-Mail</th>
                           <th>Alamat</th>
-                          <th>&nbsp;</th>
+                          <th style="width: 80px">&nbsp;</th>
                       </tr>
                     </thead>
                     <tbody>
+                        <?php
+                        $n = 1;
+                        foreach ($rs as $r) {
+                        ?>
+                            <tr>
+                                <td><?= $n?></td>
+                                <td><?= $r['nama_ortu']?></td>
+                                <td><?= $r['no_hp']?></td>
+                                <td><?= $r['email']?></td>
+                                <td><?= $r['alamat']?></td>
+                                <td>
+                                    <button class="btn btn-info btn-small" href="<?= base_url()?>setting/ortu_new/<?= $r['id_ortu']?>" ><i class="icon-edit"> </i></button>
+                                    <button class="btn btn-danger btn-small" href="<?= base_url()?>setting/ortu_delete/<?= $r['id_ortu']?>" ><i class="icon-remove-sign"> </i></button>
+                                </td>
+                            </tr>
+                        <?php
+                            $n++;
+                        }
+                        ?>
                     </tbody>
                   </table>
                 </div>
