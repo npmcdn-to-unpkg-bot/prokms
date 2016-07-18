@@ -96,7 +96,7 @@ class Setting extends CI_Controller {
             $rs = $this->model_dokter->getAll();
             $data['rs'] = $rs;
             
-            $view['content'] = $this->load->view('setting/dokter',NULL,TRUE);
+            $view['content'] = $this->load->view('setting/dokter',$data,TRUE);
             $this->load->view('index',$view);
 	}
         
@@ -108,10 +108,10 @@ class Setting extends CI_Controller {
             if($this->input->post())
             {
 //                do validate
-                $rules = array( array('field'=>'nama','label'=>'Nama Orang Tua','rules'=>'required'),
-                                array('field'=>'alamat','label'=>'Alamat','rules'=>'required'),
-                                array('field'=>'phone','label'=>'Telephone/HP','rules'=>'required'),
-                                array('field'=>'email','label'=>'Username (Email)','rules'=>'required|regex_match[/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/]'),
+                $rules = array( array('field'=>'nama_dokter','label'=>'Nama Dokter','rules'=>'required'),
+                                array('field'=>'alamat_dokter','label'=>'Alamat','rules'=>'required'),
+                                array('field'=>'phone_dokter','label'=>'Telephone/HP','rules'=>'required'),
+                                array('field'=>'email_dokter','label'=>'Username (Email)','rules'=>'required|regex_match[/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/]'),
                                 array('field'=>'credential','label'=>'Password','rules'=>'required|max_length[20]'),
                                 array('field'=>'credential2','label'=>'Re-entry Password','rules'=>'required|matches[credential]')
                 );
@@ -122,17 +122,17 @@ class Setting extends CI_Controller {
 //                    do insert
 //                      get user id
                     $id_user = $this->model_users->getId();
-                    $ru = array('username'=>$_POST['email'],
+                    $ru = array('username'=>$_POST['email_dokter'],
                                 'credential'=>$_POST['credential'],
-                                'id_role'=>2);//orang tua
+                                'id_role'=>3);//dokter
                     if($this->model_users->add($ru))
                     {
 //                        insert orang tua
-                        $ro = array('nama_ortu'=>$_POST['nama'],
-                                    'id_user'=>$id_user,
-                                    'alamat'=>$_POST['alamat'],
-                                    'no_hp'=>$_POST['phone'],
-                                    'email'=>$_POST['email']);
+                        $ro = array('nama_dokter'=>$_POST['nama_dokter'],
+                                    'id_user_dokter'=>$id_user,
+                                    'alamat_dokter'=>$_POST['alamat_dokter'],
+                                    'no_hp_dokter'=>$_POST['phone_dokter'],
+                                    'email_dokter'=>$_POST['email_dokter']);
                         if($this->model_dokter->add($ro))
                         {
                             redirect('setting/dokter');
@@ -147,15 +147,58 @@ class Setting extends CI_Controller {
 	}
 	public function petugas()
 	{
+            $this->load->model('model_petugas');
             
-            $view['content'] = $this->load->view('setting/ortu',NULL,TRUE);
+            $rs = $this->model_petugas->getAll();
+            $data['rs'] = $rs;
+            
+            $view['content'] = $this->load->view('setting/petugas',$data,TRUE);
             $this->load->view('index',$view);
 	}
         
 	public function petugas_new()
 	{
+            $this->load->library('form_validation');
+            $this->load->model('model_users');
+            $this->load->model('model_petugas');
+            if($this->input->post())
+            {
+//                do validate
+                $rules = array( array('field'=>'nama_petugas','label'=>'Nama Petugas','rules'=>'required'),
+                                array('field'=>'alamat_petugas','label'=>'Alamat','rules'=>'required'),
+                                array('field'=>'phone_petugas','label'=>'Telephone/HP','rules'=>'required'),
+                                array('field'=>'email_petugas','label'=>'Username (Email)','rules'=>'required|regex_match[/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/]'),
+                                array('field'=>'credential','label'=>'Password','rules'=>'required|max_length[20]'),
+                                array('field'=>'credential2','label'=>'Re-entry Password','rules'=>'required|matches[credential]')
+                );
+                
+                $this->form_validation->set_rules($rules);
+                if ($this->form_validation->run() != FALSE)
+                {
+//                    do insert
+//                      get user id
+                    $id_user = $this->model_users->getId();
+                    $ru = array('username'=>$_POST['email_petugas'],
+                                'credential'=>$_POST['credential'],
+                                'id_role'=>4);//petugas posyandu
+                    if($this->model_users->add($ru))
+                    {
+//                        insert orang tua
+                        $ro = array('nama_petugas'=>$_POST['nama_petugas'],
+                                    'id_user_petugas'=>$id_user,
+                                    'alamat_petugas'=>$_POST['alamat_petugas'],
+                                    'no_hp_petugas'=>$_POST['phone_petugas'],
+                                    'email_petugas'=>$_POST['email_petugas']);
+                        if($this->model_petugas->add($ro))
+                        {
+                            redirect('setting/petugas');
+                        }
+                    }
+                    
+                }
+            }
             
-            $view['content'] = $this->load->view('setting/ortu_new',NULL,TRUE);
+            $view['content'] = $this->load->view('setting/petugas_new',NULL,TRUE);
             $this->load->view('index',$view);
 	}
         
