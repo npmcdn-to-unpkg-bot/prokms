@@ -91,15 +91,58 @@ class Setting extends CI_Controller {
 	}
 	public function dokter()
 	{
+            $this->load->model('model_dokter');
             
-            $view['content'] = $this->load->view('setting/ortu',NULL,TRUE);
+            $rs = $this->model_dokter->getAll();
+            $data['rs'] = $rs;
+            
+            $view['content'] = $this->load->view('setting/dokter',NULL,TRUE);
             $this->load->view('index',$view);
 	}
         
 	public function dokter_new()
 	{
+            $this->load->library('form_validation');
+            $this->load->model('model_users');
+            $this->load->model('model_dokter');
+            if($this->input->post())
+            {
+//                do validate
+                $rules = array( array('field'=>'nama','label'=>'Nama Orang Tua','rules'=>'required'),
+                                array('field'=>'alamat','label'=>'Alamat','rules'=>'required'),
+                                array('field'=>'phone','label'=>'Telephone/HP','rules'=>'required'),
+                                array('field'=>'email','label'=>'Username (Email)','rules'=>'required|regex_match[/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/]'),
+                                array('field'=>'credential','label'=>'Password','rules'=>'required|max_length[20]'),
+                                array('field'=>'credential2','label'=>'Re-entry Password','rules'=>'required|matches[credential]')
+                );
+                
+                $this->form_validation->set_rules($rules);
+                if ($this->form_validation->run() != FALSE)
+                {
+//                    do insert
+//                      get user id
+                    $id_user = $this->model_users->getId();
+                    $ru = array('username'=>$_POST['email'],
+                                'credential'=>$_POST['credential'],
+                                'id_role'=>2);//orang tua
+                    if($this->model_users->add($ru))
+                    {
+//                        insert orang tua
+                        $ro = array('nama_ortu'=>$_POST['nama'],
+                                    'id_user'=>$id_user,
+                                    'alamat'=>$_POST['alamat'],
+                                    'no_hp'=>$_POST['phone'],
+                                    'email'=>$_POST['email']);
+                        if($this->model_dokter->add($ro))
+                        {
+                            redirect('setting/dokter');
+                        }
+                    }
+                    
+                }
+            }
             
-            $view['content'] = $this->load->view('setting/ortu_new',NULL,TRUE);
+            $view['content'] = $this->load->view('setting/dokter_new',NULL,TRUE);
             $this->load->view('index',$view);
 	}
 	public function petugas()

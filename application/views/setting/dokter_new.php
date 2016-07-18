@@ -11,34 +11,27 @@
                            <div class="control-group">											
                                     <label class="control-label" for="nrk">Nama Dokter</label>
                                     <div class="controls">
-                                        <input type="text" id="nama" name="nama">
+                                        <input type="text" id="nama_dokter" name="nama_dokter">
                                         <input type="hidden" id="id_dokter" name="id_dokter" value="" readonly="true">
                                     </div> <!-- /controls -->				
                             </div> 
-                                <div class="control-group">											
-                                    <label class="control-label" for="jkel">Jenis Kelamin</label>
-                                    <div class="controls">
-                                        <span class="span1"> <input type="radio" name="jkel" value="pria"> Pria</span>
-                                        <span class="span1"> <input type="radio" name="jkel" value="wanita"> Wanita</span>
-                                    </div> <!-- /controls -->				
-                            </div>
                             <div class="control-group">											
                                     <label class="control-label" for="photo">Alamat</label>
                                     <div class="controls" id="photo">
-                                        <textarea id="alamat" name="alamat" rows="5" cols="50" ></textarea>
+                                        <textarea id="alamat_dokter" name="alamat_dokter" rows="5" cols="50" ></textarea>
                                     </div> <!-- /controls -->				
                             </div> <!-- /control-group -->
                             <div class="control-group">											
                                     <label class="control-label" for="email">Phone</label>
                                     <div class="controls">
-                                        <input type="text" id="phone" name="phone" value="">
+                                        <input type="text" id="phone_dokter" name="phone_dokter" value="">
                                     </div> <!-- /controls -->				
                             </div>
                             <br />
                             <div class="control-group">											
                                     <label class="control-label" for="email">Username (Email)</label>
                                     <div class="controls">
-                                        <input type="text" id="email" name="email" value="">
+                                        <input type="text" id="email_dokter" name="email_dokter" value="">
                                     </div> <!-- /controls -->				
                             </div>
                             <div class="control-group">											

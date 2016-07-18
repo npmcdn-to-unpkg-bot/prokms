@@ -5,7 +5,7 @@ class Model_ortu extends Kbase {
     {
         // Call the Model constructor
         parent::__construct();
-        parent::$tname = 'users';
+        parent::$tname = 'orang_tua';
     }    
         
     function getAll()
