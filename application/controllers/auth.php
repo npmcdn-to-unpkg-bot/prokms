@@ -43,7 +43,7 @@ class Auth extends CI_Controller {
                 
                 if(!empty($r['username']))
                 {
-                    $this->session->set_userdata(array('user_id'=>$r['user_id'],
+                    $this->session->set_userdata(array('id_user'=>$r['id_user'],
                                                         'username'=>$r['username'],
                                                         'id_role'=>$r['id_role'],
                                                         'has_identity'=>TRUE)

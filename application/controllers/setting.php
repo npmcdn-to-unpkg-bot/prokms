@@ -202,7 +202,69 @@ class Setting extends CI_Controller {
             $this->load->view('index',$view);
 	}
         
+        public function balita()
+        {
+            $this->load->model('model_balita');
+            $this->load->model('model_ortu');
+            
+//          find id_ortu
+            $r = $this->model_ortu->getByUserId($this->session->userdata('id_user'));
+            if($r['id_ortu'])
+            {
+                $rs = $this->model_balita->getAllByOrtu($r['id_ortu']);
+                $data['rs'] = $rs;
+            }
+            
+            $view['content'] = $this->load->view('setting/balita',$data,TRUE);
+            $this->load->view('index',$view);
+        }
         
+        public function balita_edit()
+	{
+            $this->load->library('form_validation');
+            $this->load->model('model_ortu');
+            $this->load->model('model_balita');
+            if($this->input->post())
+            {
+//                do validate
+                $rules = array( array('field'=>'nama_balita','label'=>'Nama Balita','rules'=>'required'),
+                                array('field'=>'tanggal_lahir','label'=>'Tanggal Lahir','rules'=>'required'),
+                                array('field'=>'kelamin','label'=>'Jenis Kelamin','rules'=>'required'),
+                                array('field'=>'berat_lahir','label'=>'Berat Lahir (KG)','rules'=>'required|numeric'),
+                                array('field'=>'tinggi_lahir','label'=>'Tinggi Lahir (CM)','rules'=>'required|numeric')
+                );
+                
+                $this->form_validation->set_rules($rules);
+                if ($this->form_validation->run() != FALSE)
+                {
+//                    do insert
+//                      get ORTU_ID
+                    $r = $this->model_ortu->getByUserId($this->session->userdata('id_user'));
+                    if($r['id_ortu'])
+                    {
+//                        insert BALITA 
+                        $rb = array('nama_balita'=>$_POST['nama_balita'],
+                                    'id_ortu'=>$r['id_ortu'],
+                                    'tanggal_lahir'=>$_POST['tanggal_lahir'],
+                                    'kelamin'=>$_POST['kelamin'],
+                                    'berat_lahir'=>$_POST['berat_lahir'],
+                                    'tinggi_lahir'=>$_POST['tinggi_lahir'],
+                                    'catatan_khusus'=>$_POST['catatan_khusus']);
+                        if($this->model_balita->add($rb))
+                        {
+                            redirect('setting/balita');
+                        }
+                    }
+                    else
+                    {
+                        redirect('home');
+                    }
+                }
+            }
+            
+            $view['content'] = $this->load->view('setting/balita_form',NULL,TRUE);
+            $this->load->view('index',$view);
+	}
 }
 
 /* End of file welcome.php */

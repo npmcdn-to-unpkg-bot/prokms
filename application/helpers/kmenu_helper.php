@@ -35,6 +35,7 @@ function kmenu($base)
                         <li><a href="'.$base.'setting/ortu">Data Orang Tua</a></li>
                         <li><a href="'.$base.'setting/dokter">Data Dokter</a></li>
                         <li><a href="'.$base.'setting/petugas">Data Petugas Posyandu</a></li>
+                        <li><a href="'.$base.'setting/balita">Data Balita</a></li>
                     </ul>
                 </li>
             </ul>

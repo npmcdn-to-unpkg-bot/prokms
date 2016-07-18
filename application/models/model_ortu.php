@@ -16,6 +16,12 @@ class Model_ortu extends Kbase {
         
     }
     
+    function getByUserId($id)
+    {
+        $q = "select * from orang_tua where id_user = '".$id."'";
+        return $this->db->query($q)->row_array();
+    }
+    
     function add($r)
     {
         $q = "insert into orang_tua "
