@@ -39,8 +39,8 @@
                                 <td><?= $r['berat_lahir']?></td>
                                 <td><?= $r['tinggi_lahir']?></td>
                                 <td>
-                                    <button class="btn btn-info btn-small" href="<?= base_url()?>setting/petugas_new/<?= $r['id_petugas']?>" ><i class="icon-edit"> </i></button>
-                                    <button class="btn btn-danger btn-small" href="<?= base_url()?>setting/petugas_delete/<?= $r['id_petugas']?>" ><i class="icon-remove-sign"> </i></button>
+                                    <button class="btn btn-info btn-small" href="<?= base_url()?>setting/petugas_new/<?= $r['id_balita']?>" ><i class="icon-edit"> </i></button>
+                                    <button class="btn btn-danger btn-small" href="<?= base_url()?>setting/petugas_delete/<?= $r['id_balita']?>" ><i class="icon-remove-sign"> </i></button>
                                 </td>
                             </tr>
                         <?php

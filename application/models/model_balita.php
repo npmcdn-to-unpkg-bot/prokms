@@ -33,6 +33,7 @@ class Model_balita extends Kbase {
                 . "values"
                 . "('".$r['nama_balita']."', '".$r['id_ortu']."', '".$r['tanggal_lahir']."',"
                 . " '".$r['kelamin']."', '".$r['berat_lahir']."', '".$r['tinggi_lahir']."', '".$r['catatan_khusus']."')";
+        
         return $this->db->simple_query($q);
     }
     

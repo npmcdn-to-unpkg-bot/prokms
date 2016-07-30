@@ -1,6 +1,6 @@
 <?php
 require_once 'kbase.php';
-class Model_dokter extends Kbase {
+class Model_petugas extends Kbase {
     function __construct()
     {
         // Call the Model constructor

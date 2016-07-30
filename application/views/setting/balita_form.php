@@ -6,12 +6,16 @@
                     <h3>Tambah Data Balita</h3>
             </div>
             <div class="widget-content">
+                <div class="row">
+                    <?= validation_errors('<div class="span8 alert alert-error">', '</div>');  ?>
+                </div>
+                
                 <form id="add_auditor" class="form-horizontal" action="" method="POST" >
                         <fieldset>
                            <div class="control-group">											
                                     <label class="control-label" for="nrk">Nama Balita</label>
                                     <div class="controls">
-                                        <input type="text" id="nama_petugas" name="nama_petugas">
+                                        <input type="text" id="nama_balita" name="nama_balita">
                                         <input type="hidden" id="id_balita" name="id_balita" value="" readonly="true">
                                     </div> <!-- /controls -->				
                             </div> 
@@ -57,3 +61,11 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+$( "#tanggal_lahir" ).datepicker({
+  changeYear: true,
+  dateFormat: "yy-mm-dd",
+  yearRange: "c-5:c+1"
+});
+</script>

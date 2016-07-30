@@ -229,7 +229,7 @@ class Setting extends CI_Controller {
 //                do validate
                 $rules = array( array('field'=>'nama_balita','label'=>'Nama Balita','rules'=>'required'),
                                 array('field'=>'tanggal_lahir','label'=>'Tanggal Lahir','rules'=>'required'),
-                                array('field'=>'kelamin','label'=>'Jenis Kelamin','rules'=>'required'),
+                                array('field'=>'jkel','label'=>'Jenis Kelamin','rules'=>'required'),
                                 array('field'=>'berat_lahir','label'=>'Berat Lahir (KG)','rules'=>'required|numeric'),
                                 array('field'=>'tinggi_lahir','label'=>'Tinggi Lahir (CM)','rules'=>'required|numeric')
                 );
@@ -246,13 +246,17 @@ class Setting extends CI_Controller {
                         $rb = array('nama_balita'=>$_POST['nama_balita'],
                                     'id_ortu'=>$r['id_ortu'],
                                     'tanggal_lahir'=>$_POST['tanggal_lahir'],
-                                    'kelamin'=>$_POST['kelamin'],
+                                    'kelamin'=>$_POST['jkel'],
                                     'berat_lahir'=>$_POST['berat_lahir'],
                                     'tinggi_lahir'=>$_POST['tinggi_lahir'],
                                     'catatan_khusus'=>$_POST['catatan_khusus']);
                         if($this->model_balita->add($rb))
                         {
                             redirect('setting/balita');
+                        }
+                        else
+                        {
+                            
                         }
                     }
                     else
