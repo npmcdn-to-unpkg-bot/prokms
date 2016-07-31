@@ -14,8 +14,8 @@ function kmenu($base)
                     <i class="icon-bar-chart"></i><span>PERKEMBANGAN</span> <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="'.$base.'perkembangan/input">ENTRI</a></li>
-                        <li><a href="'.$base.'perkembangan/histori">HISTORI</a></li>
+                        <li><a href="'.$base.'perkembangan/entri">Entri</a></li>
+                        <li><a href="'.$base.'perkembangan/index">Grafik Perkembangan</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -23,8 +23,7 @@ function kmenu($base)
                     <i class="icon-umbrella"></i><span>IMUNISASI</span> <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="'.$base.'imunisasi/agenda">AGENDA IMUNISASI</a></li>
-                        <li><a href="'.$base.'imunisasi/master">MASTER IMUNISASI</a></li>
+                        <li><a href="'.$base.'imunisasi/agenda">Agenda Imunisasi</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -32,6 +31,7 @@ function kmenu($base)
                     <i class="icon-wrench"></i><span>SETTING</span> <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
+                        <li><a href="'.$base.'setting/master_imunisasi">Master Imunisasi</a></li>
                         <li><a href="'.$base.'setting/ortu">Data Orang Tua</a></li>
                         <li><a href="'.$base.'setting/dokter">Data Dokter</a></li>
                         <li><a href="'.$base.'setting/petugas">Data Petugas Posyandu</a></li>
