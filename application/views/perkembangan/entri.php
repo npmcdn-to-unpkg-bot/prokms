@@ -28,9 +28,18 @@
                                     </div> <!-- /controls -->				
                             </div> 
                             <div class="control-group">											
-                                    <label class="control-label" for="tanggal_ukur">Tanggal Ukur</label>
+                                    <label class="control-label" for="umur">Umur</label>
                                     <div class="controls">
-                                        <input id="tanggal_ukur" name="tanggal_ukur" value="" >
+                                        <select name="umur" id="umur">
+                                            <?php
+                                            for ($i = 1; $i < 61; $i++){
+                                            ?>
+                                            <option value="<?= $i?>"><?= $i?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                            
+                                        </select>
                                     </div> <!-- /controls -->				
                             </div> <!-- /control-group -->
                             <div class="control-group">											
@@ -58,7 +67,5 @@
 </div>
 
 <script type="text/javascript">
-$( "#tanggal_ukur" ).datepicker({
-  dateFormat: "yy-mm-dd"
-});
+
 </script>

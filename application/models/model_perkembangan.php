@@ -28,9 +28,9 @@ class Model_perkembangan extends Kbase {
     function add($r)
     {
         $q = "insert into perkembangan "
-                . "(id_balita,  tanggal_ukur,    berat,    tinggi)"
+                . "(id_balita,  umur,    berat,    tinggi)"
                 . "values"
-                . "('".$r['id_balita']."', '".$r['tanggal_ukur']."', '".$r['berat']."', '".$r['tinggi']."')";
+                . "('".$r['id_balita']."', '".$r['umur']."', '".$r['berat']."', '".$r['tinggi']."')";
         
         return $this->db->simple_query($q);
     }
@@ -38,7 +38,7 @@ class Model_perkembangan extends Kbase {
     function edit($id,$r)
     {
         $q = "update perkembangan set"
-                . " id_balita = '".$r['id_balita']."' , tanggal_ukur = '".$r['tanggal_ukur']."',"
+                . " id_balita = '".$r['id_balita']."' , umur = '".$r['umur']."',"
                 . " berat = '".$r['berat']."',  tinggi = '".$r['tinggi']."' "
                 . " where id_perkembangan = '".$id."'";
         return $this->db->simple_query($q);

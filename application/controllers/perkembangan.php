@@ -54,7 +54,7 @@ class Perkembangan extends CI_Controller {
             if($this->input->post())
             {
 //                do validate
-                $rules = array( array('field'=>'tanggal_ukur','label'=>'Tanggal Ukur','rules'=>'required'),
+                $rules = array( array('field'=>'umur','label'=>'Umur','rules'=>'required'),
                                 array('field'=>'berat','label'=>'Berat Timbangan (KG)','rules'=>'required|numeric'),
                                 array('field'=>'tinggi','label'=>'Tinggi Prngukuran (CM)','rules'=>'required|numeric')
                 );
@@ -68,7 +68,7 @@ class Perkembangan extends CI_Controller {
                     {
 //                        insert BALITA 
                         $rb = array('id_balita'=>$_POST['id_balita'],
-                                    'tanggal_ukur'=>$_POST['tanggal_ukur'],
+                                    'umur'=>$_POST['umur'],
                                     'berat'=>$_POST['berat'],
                                     'tinggi'=>$_POST['tinggi']);
                         if($this->model_perkembangan->add($rb))
