@@ -51,17 +51,17 @@ DROP TABLE IF EXISTS `balita`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `balita` (
-  `id_balita` int(5) NOT NULL,
+  `id_balita` int(5) NOT NULL AUTO_INCREMENT,
   `id_ortu` int(5) NOT NULL,
   `nama_balita` varchar(100) NOT NULL,
-  `tanggal_lahir` datetime NOT NULL,
-  `kelamin` double NOT NULL,
+  `tanggal_lahir` date NOT NULL,
+  `kelamin` varchar(20) NOT NULL,
   `berat_lahir` double NOT NULL,
   `tinggi_lahir` double NOT NULL,
   `catatan_khusus` varchar(500) NOT NULL,
   `last_update` datetime NOT NULL,
   PRIMARY KEY (`id_balita`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,6 +70,7 @@ CREATE TABLE `balita` (
 
 LOCK TABLES `balita` WRITE;
 /*!40000 ALTER TABLE `balita` DISABLE KEYS */;
+INSERT INTO `balita` VALUES (2,1,'balita 2','2015-07-01','laki-laki',20,40,'--tidak ada','0000-00-00 00:00:00'),(3,1,'Balita 1','2013-12-24','perempuan',30,45,'--tidak ada catatan khusus','0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `balita` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,7 +90,7 @@ CREATE TABLE `dokter` (
   `email_dokter` varchar(50) NOT NULL,
   `last_update` datetime NOT NULL,
   PRIMARY KEY (`id_dokter`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,6 +99,7 @@ CREATE TABLE `dokter` (
 
 LOCK TABLES `dokter` WRITE;
 /*!40000 ALTER TABLE `dokter` DISABLE KEYS */;
+INSERT INTO `dokter` VALUES (1,'jono',1,'jl.madura','021','o@o.com','0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `dokter` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,7 +154,7 @@ CREATE TABLE `orang_tua` (
 
 LOCK TABLES `orang_tua` WRITE;
 /*!40000 ALTER TABLE `orang_tua` DISABLE KEYS */;
-INSERT INTO `orang_tua` VALUES (1,'','pria',3,'Jl. SIni','0821','s@s.com','0000-00-00 00:00:00');
+INSERT INTO `orang_tua` VALUES (1,'Samidi','pria',3,'Jl. Sana','082131','s@s.com','0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `orang_tua` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,14 +166,14 @@ DROP TABLE IF EXISTS `perkembangan`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `perkembangan` (
-  `id_perkembangan` int(5) NOT NULL,
+  `id_perkembangan` int(5) NOT NULL AUTO_INCREMENT,
   `id_balita` int(5) NOT NULL,
-  `tanggal_ukur` datetime NOT NULL,
+  `umur` int(2) NOT NULL,
   `berat` double NOT NULL,
   `tinggi` double DEFAULT NULL,
   `last_update` datetime NOT NULL,
   PRIMARY KEY (`id_perkembangan`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,6 +182,7 @@ CREATE TABLE `perkembangan` (
 
 LOCK TABLES `perkembangan` WRITE;
 /*!40000 ALTER TABLE `perkembangan` DISABLE KEYS */;
+INSERT INTO `perkembangan` VALUES (2,2,1,31,50,'0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `perkembangan` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -199,7 +202,7 @@ CREATE TABLE `petugas_yandu` (
   `email_petugas` varchar(50) NOT NULL,
   `last_update` datetime NOT NULL,
   PRIMARY KEY (`id_petugas`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -208,6 +211,7 @@ CREATE TABLE `petugas_yandu` (
 
 LOCK TABLES `petugas_yandu` WRITE;
 /*!40000 ALTER TABLE `petugas_yandu` DISABLE KEYS */;
+INSERT INTO `petugas_yandu` VALUES (1,'Indra',1,'jl.jawa','0821','i@i.com','0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `petugas_yandu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -227,7 +231,7 @@ CREATE TABLE `users` (
   `last_update` datetime NOT NULL,
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `username_ui` (`username`) USING HASH
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -236,7 +240,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','7694f4a66316e53c8cdd9d9954bd611d',1,'2016-07-08 23:19:25','0000-00-00 00:00:00'),(3,'s@s.com','7694f4a66316e53c8cdd9d9954bd611d',2,'2016-07-17 14:23:31','0000-00-00 00:00:00');
+INSERT INTO `users` VALUES (1,'admin','7694f4a66316e53c8cdd9d9954bd611d',1,'2016-07-08 23:19:25','0000-00-00 00:00:00'),(3,'s@s.com','7694f4a66316e53c8cdd9d9954bd611d',2,'2016-07-17 14:23:31','0000-00-00 00:00:00'),(4,'i@i.com','7694f4a66316e53c8cdd9d9954bd611d',4,'2016-07-30 11:50:04','0000-00-00 00:00:00'),(5,'o@o.com','7694f4a66316e53c8cdd9d9954bd611d',3,'2016-07-30 11:50:40','0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -249,4 +253,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-17 22:03:18
+-- Dump completed on 2016-08-03 14:45:20
