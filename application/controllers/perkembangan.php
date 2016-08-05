@@ -34,10 +34,34 @@ class Perkembangan extends CI_Controller {
             $this->load->model('model_perkembangan');
             $ro = $this->model_ortu->getByUserId($this->session->userdata('id_user'));
             
+            if($this->input->post())
+            {
+                if($_POST['cari_balita']=='ok')
+                {
+                    $this->session->set_userdata(array('id_balita'=>$_POST['id_balita']));
+                }
+            }
+            
             if($ro['id_ortu'])
             {
                 $rs = $this->model_balita->getAllByOrtu($ro['id_ortu']);
                 $data['anaks'] = $rs;
+            }
+            
+            if ($this->session->userdata('id_balita') != '')
+            {
+//                get data perkembangan
+                $id_balita = $this->session->userdata('id_balita');
+                $r_anak = $this->model_balita->getDetail($id_balita);
+                $rs_pkb = $this->model_perkembangan->getBeratFormated($id_balita);
+                
+                $rs_pkb_i = array();
+                foreach ($rs_pkb as $value) {
+                    $rs_pkb_i[] = array_values($value);
+                }
+                
+                $data['r_anak'] = $r_anak;
+                $data['rs_pkb'] = $rs_pkb_i;
             }
             
             $view['content'] = $this->load->view('perkembangan/grafik',$data,TRUE);

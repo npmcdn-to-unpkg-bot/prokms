@@ -16,10 +16,19 @@ class Model_perkembangan extends Kbase {
         
     }
     
-    function getAllByOrtu($id)
+    function getAllByBalita($id)
     {
-        $q = "select * from balita"
-                . " where id_ortu = '".$id."'";
+        $q = "select * from perkembangan"
+                . " where id_balita = '".$id."'";
+        $rs = $this->db->query($q)->result_array();
+        return $rs;
+        
+    }
+    
+    function getBeratFormated($id)
+    {
+        $q = "select umur,berat from perkembangan"
+                . " where id_balita = '".$id."'";
         $rs = $this->db->query($q)->result_array();
         return $rs;
         

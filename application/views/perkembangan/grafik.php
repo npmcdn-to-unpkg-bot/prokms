@@ -22,7 +22,7 @@
 
                                     </select>
                                     <span class="spacer">
-                                        <button type="submit" class="btn btn-primary" name="cari_balita">OK</button>    
+                                        <button type="submit" class="btn btn-primary" name="cari_balita" value="ok">OK</button>    
                                 </div> <!-- /controls -->				
                         </div> 
                     </fieldset>
@@ -55,7 +55,7 @@
 
 <script type="text/javascript">
 $(function () {
-
+    var rs_pkb = <?= json_encode($rs_pkb == NULL ? array():$rs_pkb,JSON_NUMERIC_CHECK)?>;
     var z_boy_1 =   [   
                     [0, 2.1, 2.5],
                     [1, 2.9, 3.4],
@@ -438,13 +438,17 @@ $(function () {
 
 
         
-
+    Highcharts.setOptions({
+        colors: ['#ff1a1a','#2CB806','#7FF25A','#EDA405'
+        ]
+    });
+    
     $('#hc_container').highcharts({
 
         title: {
             text: 'Grafik Perkembangan'
         },
-
+        
         xAxis: {
             text: 'Umur Balita (Bulan)',
             type: 'integer'
@@ -458,84 +462,81 @@ $(function () {
 
         tooltip: {
             crosshairs: true,
-            shared: true,
-            valueSuffix: 'KG'
+            shared: shared,
+            valueSuffix: 'KG',
+            formatter: ''
         },
-
-        legend: {
+        legend: {enabled: false
         },
-
-        series: [{
-            name: 'SD -3',
+        series: [
+        {
+            name: 'Berat Timbangan',
+            data: rs_pkb,
+            zIndex: 7,
+            marker: {
+                fillColor: 'white',
+                lineWidth: 1,
+                lineColor: Highcharts.getOptions().colors[0]
+            }
+        },    
+        {
+            name: 'Gizi Kurang',
             data: z_boy_1,
             type: 'arearange',
             lineWidth: 0,
-            linkedTo: ':previous',
-            color: Highcharts.getOptions().colors[2],
-            fillOpacity: 0.3,
-            zIndex: 0
-        },
-        {
-            name: 'SD -2',
-            data: z_boy_2,
-            type: 'arearange',
-            lineWidth: 0,
-            linkedTo: ':previous',
-            color: Highcharts.getOptions().colors[1],
-            fillOpacity: 0.3,
+            color: Highcharts.getOptions().colors[3],
+            fillOpacity: 0.6,
             zIndex: 1
         },
         {
-            name: 'SD 0',
-            data: z_boy_3,
+            name: 'Gizi Baik',
+            data: z_boy_2,
             type: 'arearange',
             lineWidth: 0,
-            linkedTo: ':previous',
-            color: Highcharts.getOptions().colors[0],
-            fillOpacity: 0.3,
+            color: Highcharts.getOptions().colors[2],
+            fillOpacity: 0.6,
             zIndex: 2
         },
         {
-            name: 'SD 0',
-            data: z_boy_4,
+            name: 'Gizi Baik',
+            data: z_boy_3,
             type: 'arearange',
-            lineWidth: 0,
             linkedTo: ':previous',
-            color: Highcharts.getOptions().colors[0],
-            fillOpacity: 0.3,
+            lineWidth: 0,
+            color: Highcharts.getOptions().colors[1],
+            fillOpacity: 0.6,
             zIndex: 3
         },
         {
-            name: 'SD 2',
-            data: z_boy_5,
+            name: 'Gizi Baik',
+            data: z_boy_4,
             type: 'arearange',
-            lineWidth: 0,
             linkedTo: ':previous',
+            lineWidth: 0,
             color: Highcharts.getOptions().colors[1],
-            fillOpacity: 0.3,
+            fillOpacity: 0.6,
             zIndex: 4
         },
         {
-            name: 'SD 3',
+            name: 'Gizi Baik',
+            data: z_boy_5,
+            type: 'arearange',
+            linkedTo: ':previous',
+            lineWidth: 0,
+            color: Highcharts.getOptions().colors[2],
+            fillOpacity: 0.6,
+            zIndex: 5
+        },
+        {
+            name: 'Gizi Lebih',
             data: z_boy_6,
             type: 'arearange',
             lineWidth: 0,
-            linkedTo: ':previous',
-            color: Highcharts.getOptions().colors[2],
-            fillOpacity: 0.3,
-            zIndex: 5
+            color: Highcharts.getOptions().colors[3],
+            fillOpacity: 0.6,
+            zIndex: 6
         }
-//        {
-//            name: 'Temperature',
-//            data: averages,
-//            zIndex: 2,
-//            marker: {
-//                fillColor: 'white',
-//                lineWidth: 2,
-//                lineColor: Highcharts.getOptions().colors[0]
-//            }
-//        }
-            ]
+        ]
     });
 });
 </script>

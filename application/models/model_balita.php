@@ -15,6 +15,17 @@ class Model_balita extends Kbase {
         return $rs;
         
     }
+    function getDetail($id)
+    {
+        $q = "select id_balita,b.id_ortu, nama_balita, tanggal_lahir, kelamin, berat_lahir,
+                tinggi_lahir,catatan_khusus,nama_ortu, jkel kelamin_ortu,alamat,no_hp,email 
+                from balita a, orang_tua b
+                where a.id_ortu = b.id_ortu
+                and id_balita = '".$id."'";
+        
+        $rr = $this->db->query($q)->row_array();
+        return $rr;
+    }
     
     function getAllByOrtu($id)
     {
