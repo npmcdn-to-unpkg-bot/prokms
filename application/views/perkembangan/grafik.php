@@ -459,7 +459,7 @@ $(function () {
 //    detect anak laki dan perempuan
     if(r_anak.kelamin == 'laki-laki')
     {
-        var vc = ['#ff1a1a','#2CB806','#7FF25A','#ff0066'];
+        var vc = ['#ff1a1a','#009C05','#45A348','#62A864'];
         
         var vseries = [
         {
@@ -469,7 +469,7 @@ $(function () {
             marker: {
                 fillColor: 'white',
                 lineWidth: 1,
-                lineColor: Highcharts.getOptions().colors[0]
+                lineColor: vc[0]
             }
         },    
         {
@@ -477,7 +477,7 @@ $(function () {
             data: z_boy_1,
             type: 'arearange',
             lineWidth: 0,
-            color: Highcharts.getOptions().colors[3],
+            color: vc[3],
             fillOpacity: 0.6,
             zIndex: 1
         },
@@ -486,7 +486,7 @@ $(function () {
             data: z_boy_2,
             type: 'arearange',
             lineWidth: 0,
-            color: Highcharts.getOptions().colors[2],
+            color: vc[2],
             fillOpacity: 0.6,
             zIndex: 2
         },
@@ -496,7 +496,7 @@ $(function () {
             type: 'arearange',
             linkedTo: ':previous',
             lineWidth: 0,
-            color: Highcharts.getOptions().colors[1],
+            color: vc[1],
             fillOpacity: 0.6,
             zIndex: 3
         },
@@ -506,7 +506,7 @@ $(function () {
             type: 'arearange',
             linkedTo: ':previous',
             lineWidth: 0,
-            color: Highcharts.getOptions().colors[1],
+            color: vc[1],
             fillOpacity: 0.6,
             zIndex: 4
         },
@@ -516,7 +516,7 @@ $(function () {
             type: 'arearange',
             linkedTo: ':previous',
             lineWidth: 0,
-            color: Highcharts.getOptions().colors[2],
+            color: vc[2],
             fillOpacity: 0.6,
             zIndex: 5
         },
@@ -525,7 +525,7 @@ $(function () {
             data: z_boy_6,
             type: 'arearange',
             lineWidth: 0,
-            color: Highcharts.getOptions().colors[3],
+            color: vc[3],
             fillOpacity: 0.6,
             zIndex: 6
         }
@@ -533,7 +533,7 @@ $(function () {
     }
     else
     {
-        var vc = ['#ff1a1a','#2CB806','#7FF25A','#EDA405'];
+        var vc = ['#ff1a1a','#F5077E','#F5459D','#F587BE'];
                 
         var vseries = [
         {
