@@ -1,8 +1,8 @@
--- MySQL dump 10.16  Distrib 10.1.10-MariaDB, for Win32 (AMD64)
+-- MySQL dump 10.16  Distrib 10.1.13-MariaDB, for Win32 (AMD64)
 --
 -- Host: localhost    Database: ekms
 -- ------------------------------------------------------
--- Server version	10.1.10-MariaDB
+-- Server version	10.1.13-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -70,7 +70,7 @@ CREATE TABLE `balita` (
 
 LOCK TABLES `balita` WRITE;
 /*!40000 ALTER TABLE `balita` DISABLE KEYS */;
-INSERT INTO `balita` VALUES (2,1,'balita 2','2015-07-01','laki-laki',20,40,'--tidak ada','0000-00-00 00:00:00'),(3,1,'Balita 1','2013-12-24','perempuan',30,45,'--tidak ada catatan khusus','0000-00-00 00:00:00');
+INSERT INTO `balita` VALUES (2,1,'balita 2','2015-07-01','laki-laki',20,40,'--tidak ada','0000-00-00 00:00:00'),(3,1,'Balita 3','2013-12-24','perempuan',30,45,'--tidak ada catatan khusus','0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `balita` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,7 +173,7 @@ CREATE TABLE `perkembangan` (
   `tinggi` double DEFAULT NULL,
   `last_update` datetime NOT NULL,
   PRIMARY KEY (`id_perkembangan`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,7 +182,7 @@ CREATE TABLE `perkembangan` (
 
 LOCK TABLES `perkembangan` WRITE;
 /*!40000 ALTER TABLE `perkembangan` DISABLE KEYS */;
-INSERT INTO `perkembangan` VALUES (2,2,1,31,50,'0000-00-00 00:00:00');
+INSERT INTO `perkembangan` VALUES (2,2,1,4,50,'0000-00-00 00:00:00'),(3,2,2,5,50,'0000-00-00 00:00:00'),(4,2,3,5,52,'0000-00-00 00:00:00'),(5,2,4,6,52,'0000-00-00 00:00:00'),(6,2,5,6,55,'0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `perkembangan` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -253,4 +253,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-08-03 14:45:20
+-- Dump completed on 2016-08-06 19:33:43
