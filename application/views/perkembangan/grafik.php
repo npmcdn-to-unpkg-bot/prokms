@@ -29,15 +29,31 @@
                 </form>
             </div>
         </div>
+        <br>
         <div class="widget-box">
             <div class="widget-header">
                     <i class="icon-bar-chart"></i>
                     <h3>Grafik Perkembangan</h3>
             </div>
+            
             <div class="widget-content">
-                <div id="hc_container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                <div class="span5">
+                    <p>Nama: <?= $r_anak['nama_balita']?></p>
+                    <p>Tanggal Lahir: <?= $r_anak['tanggal_lahir']?></p>
+                    <p>Kelamin: <?= $r_anak['kelamin']?></p>
+                    <p>Berat Lahir: <?= $r_anak['berat_lahir']?> KG   Panjang Lahir: <?= $r_anak['tinggi_lahir']?> CM</p>
+                </div>
+                    
+                <div class="span5">
+                    <p>Nama Orang Tua: <?= $r_anak['nama_ortu']?></p>
+                    <p>Alamat: <?= $r_anak['alamat']?></p>
+                    <p>Telefon: <?= $r_anak['no_hp']?></p>
+                </div>
+                    
+                <div id="hc_container"></div>
             </div>
         </div>
+        <br/>
         <div class="widget-box">
             <div class="widget-header">
                     <i class="icon-list"></i>
@@ -55,6 +71,7 @@
 
 <script type="text/javascript">
 $(function () {
+    var r_anak = <?= json_encode($r_anak)?>;
     var rs_pkb = <?= json_encode($rs_pkb == NULL ? array():$rs_pkb,JSON_NUMERIC_CHECK)?>;
     var z_boy_1 =   [   
                     [0, 2.1, 2.5],
@@ -437,38 +454,14 @@ $(function () {
         ;
 
 
-        
-    Highcharts.setOptions({
-        colors: ['#ff1a1a','#2CB806','#7FF25A','#EDA405'
-        ]
-    });
+    $('#id_balita').val(r_anak.id_balita);
     
-    $('#hc_container').highcharts({
-
-        title: {
-            text: 'Grafik Perkembangan'
-        },
+//    detect anak laki dan perempuan
+    if(r_anak.kelamin == 'laki-laki')
+    {
+        var vc = ['#ff1a1a','#2CB806','#7FF25A','#ff0066'];
         
-        xAxis: {
-            text: 'Umur Balita (Bulan)',
-            type: 'integer'
-        },
-
-        yAxis: {
-            title: {
-                text: 'Berat Badan'
-            }
-        },
-
-        tooltip: {
-            crosshairs: true,
-            shared: shared,
-            valueSuffix: 'KG',
-            formatter: ''
-        },
-        legend: {enabled: false
-        },
-        series: [
+        var vseries = [
         {
             name: 'Berat Timbangan',
             data: rs_pkb,
@@ -536,7 +529,109 @@ $(function () {
             fillOpacity: 0.6,
             zIndex: 6
         }
-        ]
+        ];
+    }
+    else
+    {
+        var vc = ['#ff1a1a','#2CB806','#7FF25A','#EDA405'];
+                
+        var vseries = [
+        {
+            name: 'Berat Timbangan',
+            data: rs_pkb,
+            zIndex: 7,
+            marker: {
+                fillColor: 'white',
+                lineWidth: 1,
+                lineColor: vc[0]
+            }
+        },    
+        {
+            name: 'Gizi Kurang',
+            data: z_boy_1,
+            type: 'arearange',
+            lineWidth: 0,
+            color: vc[3],
+            fillOpacity: 0.6,
+            zIndex: 1
+        },
+        {
+            name: 'Gizi Baik',
+            data: z_boy_2,
+            type: 'arearange',
+            lineWidth: 0,
+            color: vc[2],
+            fillOpacity: 0.6,
+            zIndex: 2
+        },
+        {
+            name: 'Gizi Baik',
+            data: z_boy_3,
+            type: 'arearange',
+            linkedTo: ':previous',
+            lineWidth: 0,
+            color: vc[1],
+            fillOpacity: 0.6,
+            zIndex: 3
+        },
+        {
+            name: 'Gizi Baik',
+            data: z_boy_4,
+            type: 'arearange',
+            linkedTo: ':previous',
+            lineWidth: 0,
+            color: vc[1],
+            fillOpacity: 0.6,
+            zIndex: 4
+        },
+        {
+            name: 'Gizi Baik',
+            data: z_boy_5,
+            type: 'arearange',
+            linkedTo: ':previous',
+            lineWidth: 0,
+            color: vc[2],
+            fillOpacity: 0.6,
+            zIndex: 5
+        },
+        {
+            name: 'Gizi Lebih',
+            data: z_boy_6,
+            type: 'arearange',
+            lineWidth: 0,
+            color: vc[3],
+            fillOpacity: 0.6,
+            zIndex: 6
+        }
+        ];
+
+    }
+    
+    $('#hc_container').highcharts({
+
+        title: {
+            text: 'Grafik Perkembangan'
+        },
+        colors: vc,
+        xAxis: {
+            text: 'Umur Balita (Bulan)',
+            type: 'integer'
+        },
+
+        yAxis: {
+            title: {
+                text: 'Berat Badan'
+            }
+        },
+
+        tooltip: {
+            crosshairs: true,
+            shared: 'shared',
+            valueSuffix: 'KG'
+        },
+        legend: {enabled: false
+        },
+        series: vseries
     });
 });
 </script>
