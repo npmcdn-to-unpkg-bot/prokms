@@ -74,7 +74,6 @@
 $(function () {
     var r_anak = <?= json_encode($r_anak)?>;
     var rs_pkb = <?= json_encode($rs_pkb == NULL ? array():$rs_pkb,JSON_NUMERIC_CHECK)?>;
-    var rs_status = <?= json_encode($rs_status == NULL ? array():$rs_status,JSON_NUMERIC_CHECK)?>;
     
     $('#id_balita').val(r_anak.id_balita);
     

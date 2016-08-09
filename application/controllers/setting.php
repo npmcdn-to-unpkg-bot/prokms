@@ -43,53 +43,111 @@ class Setting extends CI_Controller {
             $this->load->view('index',$view);
 	}
         
-	public function ortu_new()
+	public function ortu_new($id)
 	{
             $this->load->library('form_validation');
             $this->load->model('model_users');
             $this->load->model('model_ortu');
             if($this->input->post())
             {
-//                do validate
-                $rules = array( array('field'=>'nama','label'=>'Nama Orang Tua','rules'=>'required'),
-                                array('field'=>'jkel','label'=>'Jenis Kelamin','rules'=>'required'),
-                                array('field'=>'alamat','label'=>'Alamat','rules'=>'required'),
-                                array('field'=>'phone','label'=>'Telephone/HP','rules'=>'required'),
-                                array('field'=>'email','label'=>'Username (Email)','rules'=>'required|regex_match[/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/]'),
-                                array('field'=>'credential','label'=>'Password','rules'=>'required|max_length[20]'),
-                                array('field'=>'credential2','label'=>'Re-entry Password','rules'=>'required|matches[credential]')
-                );
-                
-                $this->form_validation->set_rules($rules);
-                if ($this->form_validation->run() != FALSE)
+                if (empty($_POST['id_ortu']))
                 {
-//                    do insert
-//                      get user id
-                    $id_user = $this->model_users->getId();
-                    $ru = array('username'=>$_POST['email'],
-                                'credential'=>$_POST['credential'],
-                                'id_role'=>2);//orang tua
-                    if($this->model_users->add($ru))
+    //                do validate
+                    $rules = array( array('field'=>'nama','label'=>'Nama Orang Tua','rules'=>'required'),
+                                    array('field'=>'jkel','label'=>'Jenis Kelamin','rules'=>'required'),
+                                    array('field'=>'alamat','label'=>'Alamat','rules'=>'required'),
+                                    array('field'=>'phone','label'=>'Telephone/HP','rules'=>'required'),
+                                    array('field'=>'email','label'=>'Username (Email)','rules'=>'required|regex_match[/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/]'),
+                                    array('field'=>'credential','label'=>'Password','rules'=>'required|max_length[20]'),
+                                    array('field'=>'credential2','label'=>'Re-entry Password','rules'=>'required|matches[credential]')
+                    );
+
+                    $this->form_validation->set_rules($rules);
+                    if ($this->form_validation->run() != FALSE)
                     {
-//                        insert orang tua
-                        $ro = array('nama_ortu'=>$_POST['nama'],
-                                    'jkel'=>$_POST['jkel'],
-                                    'id_user'=>$id_user,
-                                    'alamat'=>$_POST['alamat'],
-                                    'no_hp'=>$_POST['phone'],
-                                    'email'=>$_POST['email']);
-                        if($this->model_ortu->add($ro))
+    //                    do insert
+    //                      get user id
+                        $id_user = $this->model_users->getId();
+                        $ru = array('username'=>$_POST['email'],
+                                    'credential'=>$_POST['credential'],
+                                    'id_role'=>2);//orang tua
+                        if($this->model_users->add($ru))
                         {
-                            redirect('setting/ortu');
+    //                        insert orang tua
+                            $ro = array('nama_ortu'=>$_POST['nama'],
+                                        'jkel'=>$_POST['jkel'],
+                                        'id_user'=>$id_user,
+                                        'alamat'=>$_POST['alamat'],
+                                        'no_hp'=>$_POST['phone'],
+                                        'email'=>$_POST['email']);
+                            if($this->model_ortu->add($ro))
+                            {
+                                redirect('setting/ortu');
+                            }
                         }
+
                     }
+                }
+                else
+                {
                     
+    //                do validate
+                    $rules = array( array('field'=>'nama','label'=>'Nama Orang Tua','rules'=>'required'),
+                                    array('field'=>'jkel','label'=>'Jenis Kelamin','rules'=>'required'),
+                                    array('field'=>'alamat','label'=>'Alamat','rules'=>'required'),
+                                    array('field'=>'phone','label'=>'Telephone/HP','rules'=>'required'),
+                                    array('field'=>'email','label'=>'Username (Email)','rules'=>'regex_match[/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/]'),
+                                    array('field'=>'credential','label'=>'Password','rules'=>'max_length[20]'),
+                                    array('field'=>'credential2','label'=>'Re-entry Password','rules'=>'matches[credential]')
+                    );
+                    
+                    $this->form_validation->set_rules($rules);
+                    if ($this->form_validation->run() != FALSE)
+                    {
+    //                    do update
+    //                      get user id
+                        $rr_ortu = $this->model_ortu->getById($_POST['id_ortu']);
+                        $ru = array('credential'=>$_POST['credential']
+                                    );//orang tua
+                        if($this->model_users->update($rr_ortu['id_user'],$ru))
+                        {
+    //                        update orang tua
+                            $ro = array('nama_ortu'=>$_POST['nama'],
+                                        'jkel'=>$_POST['jkel'],
+                                        'alamat'=>$_POST['alamat'],
+                                        'no_hp'=>$_POST['phone']);
+                            if($this->model_ortu->update($rr_ortu['id_user'],$ro))
+                            {
+                                redirect('setting/ortu');
+                            }
+                        }
+
+                    }
                 }
             }
-            $view['content'] = $this->load->view('setting/ortu_new',NULL,TRUE);
+            if(!empty($id))
+            {
+//                ambil data dari data base
+                $ro = $this->model_ortu->getById($id);
+                $data['r_ortu'] = $ro;
+            }
+            $view['content'] = $this->load->view('setting/ortu_new',$data,TRUE);
             $this->load->view('index',$view);
 	}
-	public function dokter()
+        
+        public function ortu_delete($id)
+        {
+            $this->load->model('model_users');
+            $this->load->model('model_ortu');
+            
+            $rr_ortu = $this->model_ortu->getById($id);
+            $this->model_users->delete($rr_ortu['id_user']);
+            $this->model_ortu->delete($rr_ortu['id_ortu']);
+            
+            redirect('setting/ortu');
+        }
+
+        public function dokter()
 	{
             $this->load->model('model_dokter');
             

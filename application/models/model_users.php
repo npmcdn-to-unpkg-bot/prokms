@@ -17,6 +17,19 @@ class Model_users extends Kbase {
                 . "('".$r['username']."',md5('".$r['credential']."'),'".$r['id_role']."','".$dt."')";
         return $this->db->simple_query($q);
     }
+    
+    function update($id,$r)
+    {
+        $q = "UPDATE users SET credential = md5('".$r['credential']."') WHERE id_user = '".$id."'";
+        return $this->db->simple_query($q);
+    }
+    
+    function delete($id)
+    {
+        $q = "DELETE FROM users WHERE id_user='".$id."'";
+        return $this->db->simple_query($q);
+    }
+    
     function getToAuthenticate($id,$crd)
     {
         $id = $this->db->escape($id);

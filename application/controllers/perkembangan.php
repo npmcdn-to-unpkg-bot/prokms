@@ -55,11 +55,10 @@ class Perkembangan extends CI_Controller {
                 $r_anak = $this->model_balita->getDetail($id_balita);
                 $rs_pkb = $this->model_perkembangan->getBeratFormated($id_balita);
                 
-                $rs_pkb_i[] = [0,$r_anak['berat_lahir']];
+                $rs_pkb_i[] = array('x'=>0,'y'=>$r_anak['berat_lahir'],'status'=>'');
                 $rs_status_i = array();
                 foreach ($rs_pkb as $k=>$v) {
-                    $rs_pkb_i[] = array_values($v);
-                    
+                       
 //                    hitung selisih
                     $selisih = FALSE;
                     if($v['umur']== 1)
@@ -70,11 +69,9 @@ class Perkembangan extends CI_Controller {
                     {
                         $selisih = $v['berat'] - $rs_pkb[$k-1]['berat'];
                     }
-                    
-                    if($selisih !== FALSE)
-                    {
-                        $rs_status_i[] = [$v['umur'],  $this->status_timbang($r_anak['kelamin'], $v['umur'], $v['berat'], $selisih)];
-                    }
+                  
+                    $rs_pkb_i[] = array('x'=>$v['umur'],'y'=>$v['berat'],'status'=>$this->status_timbang($r_anak['kelamin'], $v['umur'], $v['berat'], $selisih));
+                   
                 }
                 
                 $data['r_anak'] = $r_anak;
@@ -98,7 +95,7 @@ class Perkembangan extends CI_Controller {
 //                do validate
                 $rules = array( array('field'=>'umur','label'=>'Umur','rules'=>'required'),
                                 array('field'=>'berat','label'=>'Berat Timbangan (KG)','rules'=>'required|numeric'),
-                                array('field'=>'tinggi','label'=>'Tinggi Prngukuran (CM)','rules'=>'required|numeric')
+                                array('field'=>'tinggi','label'=>'Tinggi Prngukuran (CM)','rules'=>'numeric')
                 );
                 
                 $this->form_validation->set_rules($rules);
@@ -141,6 +138,11 @@ class Perkembangan extends CI_Controller {
         private function status_timbang($jk, $umur, $berat, $selisih)
         {   
 //            start calculate
+            if ($selisih === FALSE)
+            {
+                return '';
+            }
+            
             if($jk == 'laki-laki')
             {
                 switch ($umur) {
@@ -228,6 +230,7 @@ class Perkembangan extends CI_Controller {
             {
                 
             }
+            
             return $status;
         }
 }

@@ -22,6 +22,12 @@ class Model_ortu extends Kbase {
         return $this->db->query($q)->row_array();
     }
     
+    function getById($id)
+    {
+        $q = "select * from orang_tua where id_ortu = '".$id."'";
+        return $this->db->query($q)->row_array();
+    }
+    
     function add($r)
     {
         $q = "insert into orang_tua "
@@ -31,6 +37,21 @@ class Model_ortu extends Kbase {
                 . "('".$r['nama_ortu']."', '".$r['jkel']."', '".$r['id_user']."', '".$r['alamat']."',"
                 . " '".$r['no_hp']."', '".$r['email']."')";
         return $this->db->simple_query($q);
+    }
+
+    function update($id,$r)
+    {
+        $q = "UPDATE orang_tua "
+                . " SET nama_ortu = '".$r['nama_ortu']."', jkel = '".$r['jkel']."', alamat = '".$r['alamat']."',"
+                . " no_hp = '".$r['no_hp']."' "
+                . " WHERE id_user = '".$id."'"
+                ;
+        return $this->db->simple_query($q);
+    }
+    
+    function delete($id)
+    {
+        $q = "DELETE FROM orang_tua WHERE id_ortu='".$id."'";
     }
 }
 ?>

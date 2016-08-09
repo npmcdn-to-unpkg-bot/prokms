@@ -22,8 +22,8 @@
                                 <div class="control-group">											
                                     <label class="control-label" for="jkel">Jenis Kelamin</label>
                                     <div class="controls">
-                                        <span class="span1"> <input type="radio" name="jkel" value="pria"> Pria</span>
-                                        <span class="span1"> <input type="radio" name="jkel" value="wanita"> Wanita</span>
+                                        <span class="span1"> <input id="rpria" type="radio" name="jkel" value="pria"> Pria</span>
+                                        <span class="span1"> <input id="rwanita" type="radio" name="jkel" value="wanita"> Wanita</span>
                                     </div> <!-- /controls -->				
                             </div>
                             <div class="control-group">											
@@ -67,3 +67,13 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+var r_ortu = <?= json_encode($r_ortu == NULL ? array():$r_ortu,JSON_NUMERIC_CHECK)?>;
+//set the value of each form
+$('#nama').val(r_ortu.nama_ortu);
+$('#r'+r_ortu.jkel).prop('checked',true);
+$('#id_ortu').val(r_ortu.id_ortu);
+$('#alamat').val(r_ortu.alamat);
+$('#phone').val(r_ortu.no_hp);
+$('#email').val(r_ortu.email).prop('disabled',true);
+</script>
