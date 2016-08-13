@@ -38,7 +38,7 @@
                 <div class="widget-content">
                     <div class="clearfix">
                         <div class="control-group pull-right">											
-                            <a href="<?= base_url()?>imunisasi/entry" role="button" class="btn btn-primary" data-backdrop="static">
+                            <a href="<?= base_url()?>imunisasi/entri" role="button" class="btn btn-primary" data-backdrop="static">
                                     <span class="icon-plus"></span> Tambah Baru
                                 </a>				
                         </div>

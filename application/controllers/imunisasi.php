@@ -73,35 +73,26 @@ class Imunisasi extends CI_Controller {
             if($this->input->post())
             {
 //                do validate
-                $rules = array( array('field'=>'umur','label'=>'Umur','rules'=>'required'),
-                                array('field'=>'berat','label'=>'Berat Timbangan (KG)','rules'=>'required|numeric'),
-                                array('field'=>'tinggi','label'=>'Tinggi Prngukuran (CM)','rules'=>'numeric')
+                $rules = array( array('field'=>'id_balita','label'=>'Nama Balita','rules'=>'required'),
+                                array('field'=>'id_imunisasi','label'=>'Nama Imunisasi','rules'=>'required'),
+                                array('field'=>'tanggal_agenda','label'=>'Tanggal Agenda','rules'=>'required')
                 );
                 
                 $this->form_validation->set_rules($rules);
                 if ($this->form_validation->run() != FALSE)
                 {
 //                    do insert
-//                      get ORTU_ID
-                    if($ro['id_ortu'])
+//                    insert BALITA 
+                    $rb = array('id_balita'=>$_POST['id_balita'],
+                                'id_imunisasi'=>$_POST['id_imunisasi'],
+                                'tanggal_agenda'=>$_POST['tanggal_agenda']);
+                    if($this->model_agimunisasi->add($rb))
                     {
-//                        insert BALITA 
-                        $rb = array('id_balita'=>$_POST['id_balita'],
-                                    'umur'=>$_POST['umur'],
-                                    'berat'=>$_POST['berat'],
-                                    'tinggi'=>$_POST['tinggi']);
-                        if($this->model_perkembangan->add($rb))
-                        {
-                            redirect('perkembangan/entri');
-                        }
-                        else
-                        {
-                            
-                        }
+                        redirect('imunisasi/index');
                     }
                     else
                     {
-                        redirect('home');
+                        redirect('imunisasi/index');
                     }
                 }
             }
