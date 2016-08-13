@@ -23,7 +23,7 @@ function kmenu($base)
                     <i class="icon-umbrella"></i><span>IMUNISASI</span> <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="'.$base.'imunisasi/agenda">Agenda Imunisasi</a></li>
+                        <li><a href="'.$base.'imunisasi/index">Agenda Imunisasi</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
