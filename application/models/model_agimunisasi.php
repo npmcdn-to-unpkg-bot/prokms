@@ -18,8 +18,10 @@ class Model_agimunisasi extends Kbase {
     
     function getAllByBalita($id)
     {
-        $q = "select * from agenda_imunisasi"
-                . " where id_balita = '".$id."'";
+        $q = "select a.*,b.nama_imunisasi,b.sifat_imunisasi from agenda_imunisasi a, imunisasi b "
+                . " where a.id_imunisasi = b.id_imunisasi"
+                . " and  id_balita = '".$id."'"
+                . " order by tanggal_agenda";
         $rs = $this->db->query($q)->result_array();
         return $rs;
         
@@ -30,10 +32,11 @@ class Model_agimunisasi extends Kbase {
     function add($r)
     {
         $q = "insert into agenda_imunisasi "
-                . "(id_balita,  id_imunisasi,    tanggal_agenda, flag_realisasi, tanggal_realisasi, keterengan)"
+                . "(id_balita,  id_imunisasi,    tanggal_agenda, flag_realisasi, tanggal_realisasi, keterangan)"
                 . "values"
                 . "('".$r['id_balita']."', '".$r['id_imunisasi']."', '".$r['tanggal_agenda']."', '".$r['flag_realisasi']."', '".$r['tanggal_realisasi']."', '".$r['keterengan']."')";
         
+//        var_dump($q); exit();
         return $this->db->simple_query($q);
     }
     

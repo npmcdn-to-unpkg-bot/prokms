@@ -51,7 +51,7 @@
                           <th>Imunisasi</th>
                           <th>Tanggal</th>
                           <th>Status</th>
-                          <th style="width: 80px">&nbsp;</th>
+                          <th style="width: 120px">&nbsp;</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -66,7 +66,7 @@
                                 <td><?= $r['flag_realisasi']?></td>
                                 <td>
                                     <a class="btn btn-info btn-small" href="<?= base_url()?>imunisasi/realisasi/<?= $r['id_agenda']?>" ><i class="icon-comment"> </i></a>
-                                    <a class="btn btn-danger btn-small" href="<?= base_url()?>imunisasi/update/<?= $r['id_agenda']?>" ><i class="icon-edit"> </i></a>
+                                    <a class="btn btn-info btn-small" href="<?= base_url()?>imunisasi/update/<?= $r['id_agenda']?>" ><i class="icon-edit"> </i></a>
                                     <a class="btn btn-danger btn-small" href="<?= base_url()?>imunisasi/delte/<?= $r['id_agenda']?>" ><i class="icon-remove-sign"> </i></a>
                                 </td>
                             </tr>

@@ -53,9 +53,9 @@ class Perkembangan extends CI_Controller {
 //                get data perkembangan
                 $id_balita = $this->session->userdata('id_balita');
                 $r_anak = $this->model_balita->getDetail($id_balita);
-                $rs_pkb = $this->model_perkembangan->getBeratFormated($id_balita);
+                $rs_pkb = $this->model_perkembangan->getAllByBalita($id_balita);
                 
-                $rs_pkb_i[] = array('x'=>0,'y'=>$r_anak['berat_lahir'],'status'=>'');
+                $rs_pkb_i[] = array('x'=>0,'y'=>$r_anak['berat_lahir'],'tinggi'=>$r_anak['tinggi_lahir'],'id_perkembangan'=>'','status'=>'');
                 $rs_status_i = array();
                 foreach ($rs_pkb as $k=>$v) {
                        
@@ -70,7 +70,7 @@ class Perkembangan extends CI_Controller {
                         $selisih = $v['berat'] - $rs_pkb[$k-1]['berat'];
                     }
                   
-                    $rs_pkb_i[] = array('x'=>$v['umur'],'y'=>$v['berat'],'status'=>$this->status_timbang($r_anak['kelamin'], $v['umur'], $v['berat'], $selisih));
+                    $rs_pkb_i[] = array('x'=>$v['umur'],'y'=>$v['berat'],'tinggi'=>$v['tinggi'],'id_perkembangan'=>$v['id_perkembangan'],'status'=>$this->status_timbang($r_anak['kelamin'], $v['umur'], $selisih));
                    
                 }
                 
@@ -135,7 +135,7 @@ class Perkembangan extends CI_Controller {
             $this->load->view('index',$view);
         }
         
-        private function status_timbang($jk, $umur, $berat, $selisih)
+        private function status_timbang($jk, $umur, $selisih)
         {   
 //            start calculate
             if ($selisih === FALSE)
@@ -228,7 +228,86 @@ class Perkembangan extends CI_Controller {
             }
             else
             {
-                
+                switch ($umur) {
+                    case 1:
+                        if ($selisih >= 0.8)
+                        {
+                            $status = 'N';
+                        }
+                        else
+                        {
+                            $status = 'T';
+                        }
+
+                        break;
+                    case 2:
+                        if ($selisih >= 0.9)
+                        {
+                            $status = 'N';
+                        }
+                        else
+                        {
+                            $status = 'T';
+                        }
+
+                        break;
+                    case 3:
+                        if ($selisih >= 0.8)
+                        {
+                            $status = 'N';
+                        }
+                        else
+                        {
+                            $status = 'T';
+                        }
+
+                        break;
+                    case 4:
+                        if ($selisih >= 0.6)
+                        {
+                            $status = 'N';
+                        }
+                        else
+                        {
+                            $status = 'T';
+                        }
+
+                        break;
+                    case 5:
+                        if ($selisih >= 0.5)
+                        {
+                            $status = 'N';
+                        }
+                        else
+                        {
+                            $status = 'T';
+                        }
+
+                        break;
+                    case 6:
+                        if ($selisih >= 0.4)
+                        {
+                            $status = 'N';
+                        }
+                        else
+                        {
+                            $status = 'T';
+                        }
+
+                        break;
+                    default :
+                        if ($selisih >= 0.3)
+                        {
+                            $status = 'N';
+                        }
+                        else
+                        {
+                            $status = 'T';
+                        }
+
+                        break;
+
+                }
             }
             
             return $status;

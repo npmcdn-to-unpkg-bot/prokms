@@ -69,6 +69,7 @@ class Imunisasi extends CI_Controller {
             $this->load->model('model_balita');
             $this->load->model('model_ortu');
             $this->load->model('model_imunisasi');
+            $this->load->model('model_agimunisasi');
             
             if($this->input->post())
             {
@@ -85,7 +86,10 @@ class Imunisasi extends CI_Controller {
 //                    insert BALITA 
                     $rb = array('id_balita'=>$_POST['id_balita'],
                                 'id_imunisasi'=>$_POST['id_imunisasi'],
-                                'tanggal_agenda'=>$_POST['tanggal_agenda']);
+                                'tanggal_agenda'=>$_POST['tanggal_agenda'],
+                                'flag_realisasi'=>0
+                        );
+                        
                     if($this->model_agimunisasi->add($rb))
                     {
                         redirect('imunisasi/index');

@@ -60,7 +60,35 @@
                     <h3>Histori Perkembangan</h3>
             </div>
             <div class="widget-content">
-                
+                <table id="auditor_main" class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                          <th>Umur</th>
+                          <th>Berat (KG)</th>
+                          <th>Tinggi (CM)</th>
+                          <th>Status</th>
+                          <th style="width: 120px">&nbsp;</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($rs_pkb as $r) {
+                        ?>
+                            <tr>
+                                <td><?= $r['x']?></td>
+                                <td><?= $r['y']?></td>
+                                <td><?= $r['tinggi']?></td>
+                                <td><?= $r['status']?></td>
+                                <td>
+                                    <a class="btn btn-info btn-small" href="<?= base_url()?>perkembangan/update/<?= $r['id_perkembangan']?>" ><i class="icon-edit"> </i></a>
+                                    <a class="btn btn-danger btn-small" href="<?= base_url()?>perkembangan/delete/<?= $r['id_perkembangan']?>" ><i class="icon-remove-sign"> </i></a>
+                                </td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                  </table>
             </div>
         </div>
     </div>
