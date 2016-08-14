@@ -19,9 +19,9 @@ class Model_imunisasi extends Kbase {
     function add($r)
     {
         $q = "insert into imunisasi "
-                . "(id_balita,  umur,    berat,    tinggi)"
+                . "(nama_imunisasi,  sifat_imunisasi)"
                 . "values"
-                . "('".$r['id_balita']."', '".$r['umur']."', '".$r['berat']."', '".$r['tinggi']."')";
+                . "('".$r['nama_imunisasi']."', '".$r['sifat_imunisasi']."')";
         
         return $this->db->simple_query($q);
     }
@@ -29,15 +29,14 @@ class Model_imunisasi extends Kbase {
     function edit($id,$r)
     {
         $q = "update imunisasi set"
-                . " id_balita = '".$r['id_balita']."' , umur = '".$r['umur']."',"
-                . " berat = '".$r['berat']."',  tinggi = '".$r['tinggi']."' "
-                . " where id_perkembangan = '".$id."'";
+                . " nama_imunisasi = '".$r['nama_imunisasi']."' , sifat_imunisasi = '".$r['sifat_imunisasi']."' "
+                . " where id_imunisasi = '".$id."'";
         return $this->db->simple_query($q);
     }
     
     function delete($id)
     {
-        $q = "delete from imunisasi where id_perkembangan = '".$id."'";
+        $q = "delete from imunisasi where id_imunisasi = '".$id."'";
         
         return $this->db->simple_query($q);
     }

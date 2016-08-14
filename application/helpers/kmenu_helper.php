@@ -31,7 +31,7 @@ function kmenu($base)
                     <i class="icon-wrench"></i><span>SETTING</span> <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="'.$base.'setting/master_imunisasi">Master Imunisasi</a></li>
+                        <li><a href="'.$base.'setting/imunisasi">Master Imunisasi</a></li>
                         <li><a href="'.$base.'setting/ortu">Data Orang Tua</a></li>
                         <li><a href="'.$base.'setting/dokter">Data Dokter</a></li>
                         <li><a href="'.$base.'setting/petugas">Data Petugas Posyandu</a></li>

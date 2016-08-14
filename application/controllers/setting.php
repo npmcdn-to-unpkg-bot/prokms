@@ -327,6 +327,59 @@ class Setting extends CI_Controller {
             $view['content'] = $this->load->view('setting/balita_form',NULL,TRUE);
             $this->load->view('index',$view);
 	}
+        
+        public function imunisasi()
+        {
+            $this->load->model('model_imunisasi');
+            
+            $rs = $this->model_imunisasi->getAll();
+            $data['rs'] = $rs;
+            
+            $view['content'] = $this->load->view('setting/imunisasi',$data,TRUE);
+            $this->load->view('index',$view);
+        }
+        
+        public function imunisasi_edit()
+	{
+            $this->load->library('form_validation');
+            $this->load->model('model_imunisasi');
+            if($this->input->post())
+            {
+//                do validate
+                $rules = array( array('field'=>'nama_imunisasi','label'=>'Nama Imunisasi','rules'=>'required'),
+                                array('field'=>'sifat_imunisasi','label'=>'Sifat Imunisasi','rules'=>'required')
+                );
+                
+                $this->form_validation->set_rules($rules);
+                if ($this->form_validation->run() != FALSE)
+                {
+//                    do insert
+                    $rb = array('nama_imunisasi'=>$_POST['nama_imunisasi'],
+                                'sifat_imunisasi'=>$_POST['sifat_imunisasi']);
+                    if($this->model_imunisasi->add($rb))
+                    {
+                        redirect('setting/imunisasi');
+                    }
+                    else
+                    {
+                        redirect('setting/imunisasi');
+                    }
+                   
+                }
+            }
+            
+            $view['content'] = $this->load->view('setting/imunisasi_form',NULL,TRUE);
+            $this->load->view('index',$view);
+	}
+        
+        public function imunisasi_delete($id)
+        {
+            $this->load->model('model_imunisasi');
+            
+            $this->model_imunisasi->delete($id);
+            
+            redirect('setting/imunisasi');
+        }
 }
 
 /* End of file welcome.php */
