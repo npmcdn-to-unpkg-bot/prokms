@@ -88,7 +88,6 @@ class Perkembangan extends CI_Controller {
             $this->load->model('model_balita');
             $this->load->model('model_ortu');
             $this->load->model('model_perkembangan');
-            $ro = $this->model_ortu->getByUserId($this->session->userdata('id_user'));
             
             if($this->input->post())
             {
@@ -126,11 +125,21 @@ class Perkembangan extends CI_Controller {
                 }
             }
             
-            if($ro['id_ortu'])
+            if ($this->session->userdata('id_role') == 2)
             {
-                $rs = $this->model_balita->getAllByOrtu($ro['id_ortu']);
+                $ro = $this->model_ortu->getByUserId($this->session->userdata('id_user'));
+                if($ro['id_ortu'])
+                {
+                    $rs = $this->model_balita->getAllByOrtu($ro['id_ortu']);
+                    $data['anaks'] = $rs;
+                }
+            }
+            else if($this->session->userdata('id_role') == 3 or $this->session->userdata('id_role') == 4)
+            {
+                $rs = $this->model_balita->getAll();
                 $data['anaks'] = $rs;
             }
+            
             $view['content'] = $this->load->view('perkembangan/entri',$data,TRUE);
             $this->load->view('index',$view);
         }

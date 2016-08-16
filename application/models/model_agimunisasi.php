@@ -1,11 +1,12 @@
 <?php
 require_once 'kbase.php';
 class Model_agimunisasi extends Kbase {
+    protected $tname = 'agenda_imunisasi';
+    
     function __construct()
     {
         // Call the Model constructor
         parent::__construct();
-        parent::$tname = 'agenda_imunisasi';
     }    
         
     function getAll()

@@ -298,7 +298,8 @@ class Setting extends CI_Controller {
 //                    do insert
 //                      get ORTU_ID
                     $r = $this->model_ortu->getByUserId($this->session->userdata('id_user'));
-                    if($r['id_ortu'])
+//                    var_dump($r);                    exit();
+                    if(!empty($r['id_ortu']))
                     {
 //                        insert BALITA 
                         $rb = array('nama_balita'=>$_POST['nama_balita'],

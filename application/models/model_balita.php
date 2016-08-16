@@ -1,11 +1,12 @@
 <?php
 require_once 'kbase.php';
 class Model_balita extends Kbase {
+    protected $tname = 'balita';
+    
     function __construct()
     {
         // Call the Model constructor
         parent::__construct();
-        parent::$tname = 'balita';
     }    
         
     function getAll()
@@ -44,6 +45,7 @@ class Model_balita extends Kbase {
                 . "values"
                 . "('".$r['nama_balita']."', '".$r['id_ortu']."', '".$r['tanggal_lahir']."',"
                 . " '".$r['kelamin']."', '".$r['berat_lahir']."', '".$r['tinggi_lahir']."', '".$r['catatan_khusus']."')";
+        
         
         return $this->db->simple_query($q);
     }

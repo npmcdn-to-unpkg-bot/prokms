@@ -1,11 +1,12 @@
 <?php
 require_once 'kbase.php';
 class Model_petugas extends Kbase {
+    protected $tname = 'petugas_yandu';
+    
     function __construct()
     {
         // Call the Model constructor
         parent::__construct();
-        parent::$tname = 'petugas_yandu';
     }    
         
     function getAll()

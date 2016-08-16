@@ -2,12 +2,12 @@
 require_once 'kbase.php';
 
 class Model_users extends Kbase {
-    
+    protected $tname = 'users';
+            
     function __construct()
     {
         // Call the Model constructor
         parent::__construct();
-        parent::$tname = 'users';
     }    
     function add($r)
     {

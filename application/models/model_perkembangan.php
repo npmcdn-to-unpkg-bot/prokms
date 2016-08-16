@@ -1,11 +1,12 @@
 <?php
 require_once 'kbase.php';
 class Model_perkembangan extends Kbase {
+    protected $tname = 'perkembangan';
+    
     function __construct()
     {
         // Call the Model constructor
         parent::__construct();
-        parent::$tname = 'perkembangan';
     }    
         
     function getAll()
