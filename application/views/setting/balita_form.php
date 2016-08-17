@@ -16,7 +16,6 @@
                                     <label class="control-label" for="nrk">Nama Balita</label>
                                     <div class="controls">
                                         <input type="text" id="nama_balita" name="nama_balita">
-                                        <input type="hidden" id="id_balita" name="id_balita" value="" readonly="true">
                                     </div> <!-- /controls -->				
                             </div> 
                             <div class="control-group">											
@@ -28,8 +27,8 @@
                             <div class="control-group">											
                                     <label class="control-label" for="jkel">Jenis Kelamin</label>
                                     <div class="controls">
-                                        <span class="span1"> <input type="radio" name="jkel" value="laki-laki"> Laki-Laki</span>
-                                        <span class="span2"> <input type="radio" name="jkel" value="perempuan"> Perempuan</span>
+                                        <span class="span1"> <input type="radio" id="jkel_laki-laki" name="jkel" value="laki-laki"> Laki-Laki</span>
+                                        <span class="span2"> <input type="radio" id="jkel_perempuan" name="jkel" value="perempuan"> Perempuan</span>
                                     </div> <!-- /controls -->				
                             </div>
                             <div class="control-group">											
@@ -68,4 +67,16 @@ $( "#tanggal_lahir" ).datepicker({
   dateFormat: "yy-mm-dd",
   yearRange: "c-5:c+1"
 });
+
+//update data
+var r_anak = <?= json_encode($r_anak)?>;
+if (r_anak.id_balita !== '')
+{
+    $('#nama_balita').val(r_anak.nama_balita);
+    $('#tanggal_lahir').val(r_anak.tanggal_lahir);
+    $('#jkel_'+r_anak.kelamin).prop('checked',true);
+    $('#berat_lahir').val(r_anak.berat_lahir);
+    $('#tinggi_lahir').val(r_anak.tinggi_lahir);
+    $('#catatan_khusus').val(r_anak.catatan_khusus);
+}
 </script>

@@ -50,8 +50,8 @@
                                     if ($this->session->userdata('role_id') != '2')
                                     {
                                     ?>
-                                    <button class="btn btn-info btn-small" href="<?= base_url()?>setting/petugas_new/<?= $r['id_balita']?>" ><i class="icon-edit"> </i></button>
-                                    <button class="btn btn-danger btn-small" href="<?= base_url()?>setting/petugas_delete/<?= $r['id_balita']?>" ><i class="icon-remove-sign"> </i></button>
+                                    <a class="btn btn-info btn-small" href="<?= base_url()?>setting/balita_edit/<?= $r['id_balita']?>" ><i class="icon-edit"> </i></a>
+                                    <a class="btn btn-danger btn-small" href="<?= base_url()?>setting/balita_delete/<?= $r['id_balita']?>" ><i class="icon-remove-sign"> </i></a>
                                     <?php
                                     }
                                     ?>

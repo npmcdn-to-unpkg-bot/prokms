@@ -41,7 +41,7 @@ class Model_agimunisasi extends Kbase {
         return $this->db->simple_query($q);
     }
     
-    function edit($id,$r)
+    function update($id,$r)
     {
         $q = "update agenda_imunisasi set"
                 . " id_balita = '".$r['id_balita']."' , umur = '".$r['umur']."',"
@@ -52,7 +52,14 @@ class Model_agimunisasi extends Kbase {
     
     function delete($id)
     {
-        $q = "delete from imunisasi where id_perkembangan = '".$id."'";
+        $q = "delete from agenda_imunisasi where id_agenda = '".$id."'";
+        
+        return $this->db->simple_query($q);
+    }
+    
+    function deleteByBalita($idb)
+    {
+        $q = "delete from agenda_imunisasi where id_balita = '".$idb."'";
         
         return $this->db->simple_query($q);
     }

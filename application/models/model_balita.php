@@ -50,12 +50,21 @@ class Model_balita extends Kbase {
         return $this->db->simple_query($q);
     }
     
-    function edit($id,$r)
+    function update($id,$r)
     {
-        $q = "update petugas_yandu set"
-                . " nama_petugas = '".$r['nama_petugas']."' , alamat_petugas = '".$r['alamat_petugas']."',"
-                . " no_hp_petugas = '".$r['no_hp_petugas']."',  email_petugas = '".$r['email_petugas']."' "
-                . " where id_petugas = '".$id."'";
+        $q = "update balita set"
+                . " nama_balita = '".$r['nama_balita']."' , tanggal_lahir = '".$r['tanggal_lahir']."',"
+                . " kelamin = '".$r['kelamin']."',  berat_lahir = '".$r['berat_lahir']."', "
+                . " tinggi_lahir = '".$r['tinggi_lahir']."',  catatan_khusus = '".$r['catatan_khusus']."' "
+                . " where id_balita = '".$id."'";
+        
+        return $this->db->simple_query($q);
+    }
+    
+    function delete($id)
+    {
+        $q = "delete from balita where id_balita = '".$id."'";
+        
         return $this->db->simple_query($q);
     }
 }

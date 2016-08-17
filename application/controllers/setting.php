@@ -277,7 +277,7 @@ class Setting extends CI_Controller {
             $this->load->view('index',$view);
         }
         
-        public function balita_edit()
+        public function balita_edit($id = NULL)
 	{
             $this->load->library('form_validation');
             $this->load->model('model_ortu');
@@ -301,22 +301,29 @@ class Setting extends CI_Controller {
 //                    var_dump($r);                    exit();
                     if(!empty($r['id_ortu']))
                     {
-//                        insert BALITA 
-                        $rb = array('nama_balita'=>$_POST['nama_balita'],
-                                    'id_ortu'=>$r['id_ortu'],
-                                    'tanggal_lahir'=>$_POST['tanggal_lahir'],
-                                    'kelamin'=>$_POST['jkel'],
-                                    'berat_lahir'=>$_POST['berat_lahir'],
-                                    'tinggi_lahir'=>$_POST['tinggi_lahir'],
-                                    'catatan_khusus'=>$_POST['catatan_khusus']);
-                        if($this->model_balita->add($rb))
+                        if(empty($id))
                         {
-                            redirect('setting/balita');
+    //                        insert BALITA 
+                            $rb = array('nama_balita'=>$_POST['nama_balita'],
+                                        'id_ortu'=>$r['id_ortu'],
+                                        'tanggal_lahir'=>$_POST['tanggal_lahir'],
+                                        'kelamin'=>$_POST['jkel'],
+                                        'berat_lahir'=>$_POST['berat_lahir'],
+                                        'tinggi_lahir'=>$_POST['tinggi_lahir'],
+                                        'catatan_khusus'=>$_POST['catatan_khusus']);
+                            $this->model_balita->add($rb);
                         }
                         else
                         {
-                            
+                            $rb = array('nama_balita'=>$_POST['nama_balita'],
+                                        'tanggal_lahir'=>$_POST['tanggal_lahir'],
+                                        'kelamin'=>$_POST['jkel'],
+                                        'berat_lahir'=>$_POST['berat_lahir'],
+                                        'tinggi_lahir'=>$_POST['tinggi_lahir'],
+                                        'catatan_khusus'=>$_POST['catatan_khusus']);
+                            $this->model_balita->update($id,$rb);
                         }
+                        redirect('setting/balita');
                     }
                     else
                     {
@@ -325,9 +332,29 @@ class Setting extends CI_Controller {
                 }
             }
             
-            $view['content'] = $this->load->view('setting/balita_form',NULL,TRUE);
+            if(!empty($id))
+            {
+//                retrieve the data
+                $r_anak = $this->model_balita->getDetail($id);
+                $data['r_anak'] = $r_anak;
+            }
+                
+            
+            $view['content'] = $this->load->view('setting/balita_form',$data,TRUE);
             $this->load->view('index',$view);
 	}
+        
+        public function balita_delete($id) {
+            $this->load->model('model_balita');
+            $this->load->model('model_perkembangan');
+            $this->load->model('model_agimunisasi');
+            
+            $this->model_balita->delete($id);
+            $this->model_perkembangan->deleteByBalita($id);
+            $this->model_agimunisasi->deleteByBalita($id);
+            
+            redirect('setting/balita');
+        }
         
         public function imunisasi()
         {

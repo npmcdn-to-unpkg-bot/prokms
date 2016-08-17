@@ -66,5 +66,12 @@ class Model_perkembangan extends Kbase {
         
         return $this->db->simple_query($q);
     }
+    
+    function deleteByBalita($idb)
+    {
+        $q = "delete from perkembangan where id_balita = '".$idb."'";
+        
+        return $this->db->simple_query($q);
+    }
 }
 ?>
