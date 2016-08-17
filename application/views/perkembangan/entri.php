@@ -25,6 +25,7 @@
                                             ?>
                                             
                                         </select>
+                                        <input type="hidden" name="id_perkembangan" id="id_perkembangan" disabled="" readonly="">
                                     </div> <!-- /controls -->				
                             </div> 
                             <div class="control-group">											
@@ -57,7 +58,7 @@
                             
                         <div class="form-actions">
                                 <button type="submit" class="btn btn-primary">Save</button> 
-                                <button class="btn">Cancel</button>
+                                <a href="<?= base_url()?>perkembangan" class="btn">Cancel</a>
                         </div>
                         </fieldset>
                 </form>
@@ -67,5 +68,16 @@
 </div>
 
 <script type="text/javascript">
+var r_pkb = <?= json_encode($r_pkb)?>;
 
+if (r_pkb.id_perkembangan != '')
+{
+//    set value and set disabled
+    $('#id_perkemebangan').val(r_pkb.id_perkembangan);
+    $('#id_balita').val(r_pkb.id_balita).prop('disabled',true);
+    $('#umur').val(r_pkb.umur).prop('disabled',true);
+    $('#berat').val(r_pkb.berat);
+    $('#tinggi').val(r_pkb.tinggi);
+    
+}
 </script>

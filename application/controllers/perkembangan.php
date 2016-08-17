@@ -83,7 +83,7 @@ class Perkembangan extends CI_Controller {
             $this->load->view('index',$view);
 	}
         
-	public function entri() {
+	public function entri($id = NULL) {
             $this->load->library('form_validation');
             $this->load->model('model_balita');
             $this->load->model('model_ortu');
@@ -91,36 +91,33 @@ class Perkembangan extends CI_Controller {
             
             if($this->input->post())
             {
+                 
 //                do validate
-                $rules = array( array('field'=>'umur','label'=>'Umur','rules'=>'required'),
-                                array('field'=>'berat','label'=>'Berat Timbangan (KG)','rules'=>'required|numeric'),
+                $rules = array( array('field'=>'berat','label'=>'Berat Timbangan (KG)','rules'=>'required|numeric'),
                                 array('field'=>'tinggi','label'=>'Tinggi Prngukuran (CM)','rules'=>'numeric')
                 );
-                
+
                 $this->form_validation->set_rules($rules);
                 if ($this->form_validation->run() != FALSE)
                 {
-//                    do insert
-//                      get ORTU_ID
-                    if($ro['id_ortu'])
+                    if(empty($id))
                     {
-//                        insert BALITA 
+    //                    do insert
+//                     insert PERKEMBANGAN 
                         $rb = array('id_balita'=>$_POST['id_balita'],
                                     'umur'=>$_POST['umur'],
                                     'berat'=>$_POST['berat'],
                                     'tinggi'=>$_POST['tinggi']);
-                        if($this->model_perkembangan->add($rb))
-                        {
-                            redirect('perkembangan/entri');
-                        }
-                        else
-                        {
-                            
-                        }
+                        $this->model_perkembangan->add($rb);
+                        redirect('perkembangan');
                     }
                     else
                     {
-                        redirect('home');
+    //                    update data
+                        $rb = array('berat'=>$_POST['berat'],
+                                    'tinggi'=>$_POST['tinggi']);
+                        $this->model_perkembangan->update($id,$rb);
+                        redirect('perkembangan');
                     }
                 }
             }
@@ -140,11 +137,28 @@ class Perkembangan extends CI_Controller {
                 $data['anaks'] = $rs;
             }
             
+            if(!empty($id))
+            {
+//                query data perkembangan
+                
+                $r_pkb = $this->model_perkembangan->getById($id);
+                $data['r_pkb'] = $r_pkb;
+            }
+            
             $view['content'] = $this->load->view('perkembangan/entri',$data,TRUE);
             $this->load->view('index',$view);
         }
         
-        private function status_timbang($jk, $umur, $selisih)
+        public function delete($id)
+        {
+            $this->load->model('model_perkembangan');
+            
+            $this->model_perkembangan->delete($id);
+            
+            redirect('perkembangan');
+        }
+
+                private function status_timbang($jk, $umur, $selisih)
         {   
 //            start calculate
             if ($selisih === FALSE)

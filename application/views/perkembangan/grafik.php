@@ -80,7 +80,7 @@
                                 <td><?= $r['tinggi']?></td>
                                 <td><?= $r['status']?></td>
                                 <td>
-                                    <a class="btn btn-info btn-small" href="<?= base_url()?>perkembangan/update/<?= $r['id_perkembangan']?>" ><i class="icon-edit"> </i></a>
+                                    <a class="btn btn-info btn-small" href="<?= base_url()?>perkembangan/entri/<?= $r['id_perkembangan']?>" ><i class="icon-edit"> </i></a>
                                     <a class="btn btn-danger btn-small" href="<?= base_url()?>perkembangan/delete/<?= $r['id_perkembangan']?>" ><i class="icon-remove-sign"> </i></a>
                                 </td>
                             </tr>

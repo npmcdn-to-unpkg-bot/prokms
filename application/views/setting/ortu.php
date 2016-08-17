@@ -38,7 +38,7 @@
                                 <td><?= $r['alamat']?></td>
                                 <td>
                                     <a class="btn btn-info btn-small" href="<?= base_url()?>setting/ortu_new/<?= $r['id_ortu']?>" ><i class="icon-edit"> </i></a>
-                                    <a class="btn btn-danger btn-small" href="<?= base_url()?>setting/ortu_delete/<?= $r['id_ortu']?>" ><i class="icon-remove-sign"> </i></a>
+                                    <!--<a class="btn btn-danger btn-small" href="<?= base_url()?>setting/ortu_delete/<?= $r['id_ortu']?>" ><i class="icon-remove-sign"> </i></a>-->
                                 </td>
                             </tr>
                         <?php

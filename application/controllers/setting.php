@@ -43,14 +43,14 @@ class Setting extends CI_Controller {
             $this->load->view('index',$view);
 	}
         
-	public function ortu_new($id)
+	public function ortu_new($id = NULL)
 	{
             $this->load->library('form_validation');
             $this->load->model('model_users');
             $this->load->model('model_ortu');
             if($this->input->post())
             {
-                if (empty($_POST['id_ortu']))
+                if (empty($id))
                 {
     //                do validate
                     $rules = array( array('field'=>'nama','label'=>'Nama Orang Tua','rules'=>'required'),

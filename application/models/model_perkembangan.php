@@ -17,6 +17,12 @@ class Model_perkembangan extends Kbase {
         
     }
     
+    function getById($id)
+    {
+        $q = "select * from perkembangan where id_perkembangan = '".$id."'";
+        return $this->db->query($q)->row_array();
+    }
+            
     function getAllByBalita($id)
     {
         $q = "select * from perkembangan"
@@ -45,12 +51,12 @@ class Model_perkembangan extends Kbase {
         return $this->db->simple_query($q);
     }
     
-    function edit($id,$r)
+    function update($id,$r)
     {
         $q = "update perkembangan set"
-                . " id_balita = '".$r['id_balita']."' , umur = '".$r['umur']."',"
                 . " berat = '".$r['berat']."',  tinggi = '".$r['tinggi']."' "
                 . " where id_perkembangan = '".$id."'";
+       
         return $this->db->simple_query($q);
     }
     
