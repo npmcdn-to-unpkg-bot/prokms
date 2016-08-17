@@ -16,6 +16,18 @@ class Model_dokter extends Kbase {
         
     }
     
+    function getByUserId($id)
+    {
+        $q = "select * from dokter where id_user_dokter = '".$id."'";
+        return $this->db->query($q)->row_array();
+    }
+    
+    function getById($id)
+    {
+        $q = "select * from dokter where id_dokter = '".$id."'";
+        return $this->db->query($q)->row_array();
+    }
+    
     function add($r)
     {
         $q = "insert into dokter "
@@ -25,6 +37,20 @@ class Model_dokter extends Kbase {
                 . "('".$r['nama_dokter']."', '".$r['id_user_dokter']."', '".$r['alamat_dokter']."',"
                 . " '".$r['no_hp_dokter']."', '".$r['email_dokter']."')";
         return $this->db->simple_query($q);
+    }
+    
+    function update($id,$r)
+    {
+        $q = "update dokter set"
+                . " nama_dokter = '".$r['nama_dokter']."' , alamat_dokter = '".$r['alamat_dokter']."',"
+                . " no_hp_dokter = '".$r['no_hp_dokter']."'"
+                . " where id_dokter = '".$id."'";
+        return $this->db->simple_query($q);
+    }
+    
+    function delete($id)
+    {
+        $q = "DELETE FROM dokter WHERE id_dokter='".$id."'";
     }
 }
 ?>

@@ -17,6 +17,14 @@ class Model_petugas extends Kbase {
         
     }
     
+    function getById($id)
+    {
+        $q = "select * from petugas_yandu where id_petugas = '".$id."'";
+        $r = $this->db->query($q)->row_array();
+        return $r;
+        
+    }
+    
     function add($r)
     {
         $q = "insert into petugas_yandu "
@@ -28,13 +36,18 @@ class Model_petugas extends Kbase {
         return $this->db->simple_query($q);
     }
     
-    function edit($id,$r)
+    function update($id,$r)
     {
         $q = "update petugas_yandu set"
                 . " nama_petugas = '".$r['nama_petugas']."' , alamat_petugas = '".$r['alamat_petugas']."',"
-                . " no_hp_petugas = '".$r['no_hp_petugas']."',  email_petugas = '".$r['email_petugas']."' "
+                . " no_hp_petugas = '".$r['no_hp_petugas']."'"
                 . " where id_petugas = '".$id."'";
         return $this->db->simple_query($q);
+    }
+    
+    function delete($id)
+    {
+        $q = "DELETE FROM petugas_yandu WHERE id_petugas='".$id."'";
     }
 }
 ?>

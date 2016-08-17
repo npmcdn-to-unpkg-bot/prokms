@@ -17,6 +17,14 @@ class Model_agimunisasi extends Kbase {
         
     }
     
+    function getById($id)
+    {
+        $q = "select * from agenda_imunisasi where id_agenda = '".$id."'";
+        $r = $this->db->query($q)->row_array();
+        return $r;
+        
+    }
+    
     function getAllByBalita($id)
     {
         $q = "select a.*,b.nama_imunisasi,b.sifat_imunisasi from agenda_imunisasi a, imunisasi b "
@@ -44,9 +52,17 @@ class Model_agimunisasi extends Kbase {
     function update($id,$r)
     {
         $q = "update agenda_imunisasi set"
-                . " id_balita = '".$r['id_balita']."' , umur = '".$r['umur']."',"
-                . " berat = '".$r['berat']."',  tinggi = '".$r['tinggi']."' "
-                . " where id_perkembangan = '".$id."'";
+                . " id_imunisasi = '".$r['id_imunisasi']."' , tanggal_agenda = '".$r['tanggal_agenda']."'"
+                . " where id_agenda = '".$id."'";
+        return $this->db->simple_query($q);
+    }
+    
+    function realisasi($id,$r)
+    {
+        $q = "update agenda_imunisasi set"
+                . " flag_realisasi = '".$r['flag_realisasi']."' , tanggal_realisasi = '".$r['tanggal_realisasi']."',"
+                . " keterangan = '".$r['keterangan']."'"
+                . " where id_agenda = '".$id."'";
         return $this->db->simple_query($q);
     }
     
