@@ -47,12 +47,14 @@
                                     <label class="control-label" for="berat">Berat Timbangan (KG)</label>
                                     <div class="controls">
                                         <input type="text" id="berat" name="berat" value="">
+                                        <span class="alert alert-info">Gunakan "." (titik) untuk bilangan pecahan</span>
                                     </div> <!-- /controls -->				
                             </div>
                             <div class="control-group">											
                                     <label class="control-label" for="tinggi">Tinggi Pengukuran (CM)</label>
                                     <div class="controls">
                                         <input type="text" id="tinggi" name="tinggi" value="">
+                                        <span class="alert alert-info">Gunakan "." (titik) untuk bilangan pecahan</span>
                                     </div> <!-- /controls -->				
                             </div>
                             
