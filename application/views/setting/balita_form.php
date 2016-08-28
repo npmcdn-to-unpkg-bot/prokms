@@ -35,14 +35,14 @@
                                     <label class="control-label" for="berat_lahir">Berat Lahir (KG)</label>
                                     <div class="controls">
                                         <input type="text" id="berat_lahir" name="berat_lahir" value="">
-                                        <span class="alert alert-info">Gunakan "." (titik) untuk bilangan pecahan</span>
+                                        <span class="alert alert-info"><i class="icon-info-sign"></i> Gunakan "." (titik) untuk bilangan pecahan</span>
                                     </div> <!-- /controls -->				
                             </div>
                             <div class="control-group">											
                                     <label class="control-label" for="tinggi_lahir">Tinggi Lahir (CM)</label>
                                     <div class="controls">
                                         <input type="text" id="tinggi_lahir" name="tinggi_lahir" value="">
-                                        <span class="alert alert-info">Gunakan "." (titik) untuk bilangan pecahan</span>
+                                        <span class="alert alert-info"><i class="icon-info-sign"></i> Gunakan "." (titik) untuk bilangan pecahan</span>
                                     </div> <!-- /controls -->				
                             </div>
                             <div class="control-group">											
