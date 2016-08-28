@@ -19,6 +19,7 @@
 				<button class="button btn btn-success btn-large">Sign In</button>
 			</div> <!-- .actions -->
 		</form>
+            <p>Belum Punya akun? Silahkan <a href="<?= base_url()?>auth/registrasi_ortu">daftar di sini</a></p>
             
             <? if(!empty($loginerror))
             {

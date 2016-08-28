@@ -25,6 +25,12 @@ class Model_petugas extends Kbase {
         
     }
     
+    function getByUserId($id)
+    {
+        $q = "select * from petugas_yandu where id_user_petugas = '".$id."'";
+        return $this->db->query($q)->row_array();
+    }
+    
     function add($r)
     {
         $q = "insert into petugas_yandu "

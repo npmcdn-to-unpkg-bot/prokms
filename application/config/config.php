@@ -29,7 +29,7 @@ $config['base_url'] .= preg_replace('@/+$@','',dirname($_SERVER['SCRIPT_NAME']))
 /*
  * CURTOM CONFIGURATION
  */
-$config['path_file'] = "{$_SERVER['DOCUMENT_ROOT']}/pedace/";
+$config['path_file'] = "{$_SERVER['DOCUMENT_ROOT']}/prokms/";
 
 /*
 |--------------------------------------------------------------------------

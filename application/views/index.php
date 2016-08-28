@@ -11,9 +11,25 @@
       <div class="nav-collapse">
         <ul class="nav pull-right">
           <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                            class="icon-user"></i> <?= $this->session->userdata('username')?> <b class="caret"></b></a>
+                            class="icon-user"></i> <?= $this->session->userdata('nama')?> <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="javascript:;">Profile</a></li>
+              <?php
+              switch ($this->session->userdata('id_role')) {
+                    case '4': //petugas yandu
+                        $ep_link = base_url().'setting/petugas_new/'.$this->session->userdata('id_user_detail');
+                        break;
+                    case '3'://dokter
+                        $ep_link = base_url().'setting/dokter_new/'.$this->session->userdata('id_user_detail');
+                        break;
+                    case '2'://orang tua
+                        $ep_link = base_url().'setting/ortu_new/'.$this->session->userdata('id_user_detail');
+                        break;
+                    default :
+                        $ep_link = '#';
+                        break;
+              }
+              ?>
+              <li><a href="<?= $ep_link?>">Edit Profile</a></li>
               <li><a href="<?= base_url().'auth/logout'?>">Logout</a></li>
             </ul>
           </li>
